@@ -1,0 +1,32 @@
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''">
+
+    <!-- Top logo (unchanged) -->
+    <mat-toolbar class="logo-container d-flex justify-content-center" (click)="toggleCollapse()">
+        <div class="logo-image-wrapper">
+            <img [src]="companyLogo || 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg'"
+                alt="Company Logo" class="logo-img" />
+        </div>
+    </mat-toolbar>
+
+
+
+    <!-- Scrollable nav only -->
+    <div class="nav-scroll-wrapper">
+        <ul class="sidenav-nav">
+            <li class="sidenav-nav-item" *ngFor="let data of navData">
+                <a class="sidenav-nav-link" [routerLink]="[data.routeLink]" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}">
+                    <mat-icon class="sidenav-link-icon">{{data.icon}}</mat-icon>
+                    <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{data.label}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Bottom logo (new addition, fixed) -->
+    <mat-toolbar class="logo-container bottom-logo d-flex justify-content-center">
+        <!-- <div (click)="toggleCollapse()" class="logo-image-wrapper">
+            <img src="../../../../assets/senso.png" style="height: 50px; min-width: 50px;" href="https://www.senselive.io/" target="_blank" @fadeInOut>
+        </div> -->
+    </mat-toolbar>
+</div>
