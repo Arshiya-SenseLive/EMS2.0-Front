@@ -1,12 +1,18 @@
 <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''">
 
     <!-- Top logo (unchanged) -->
-    <mat-toolbar class="logo-container d-flex justify-content-center" (click)="toggleCollapse()">
-        <div class="logo-image-wrapper">
-            <img [src]="companyLogo || 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg'"
-                alt="Company Logo" class="logo-img" />
-        </div>
-    </mat-toolbar>
+   <div class="company-section" (click)="toggleCollapse()">
+  <div class="logo-image-wrapper">
+    <img [src]="companyLogo || 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg'"
+         alt="Company Logo" class="logo-img" />
+  </div>
+
+  <!-- Show company name + tagline only when expanded -->
+ <div class="company-info" [class.show]="collapsed" @fadeInOut>
+  <span class="company-name">{{ companyName }}</span>
+  <span class="company-tagline">Energy Management System</span>
+</div>
+</div>
 
 
 
@@ -24,9 +30,13 @@
     </div>
 
     <!-- Bottom logo (new addition, fixed) -->
-    <mat-toolbar class="logo-container bottom-logo d-flex justify-content-center">
-        <!-- <div (click)="toggleCollapse()" class="logo-image-wrapper">
-            <img src="../../../../assets/senso.png" style="height: 50px; min-width: 50px;" href="https://www.senselive.io/" target="_blank" @fadeInOut>
-        </div> -->
+    <mat-toolbar class="logo-container bottom-logo d-flex justify-content-center ">
+        <div class="user-initial" @fadeInOut>
+            <span class="initial-circle">LG</span>
+        </div>
+        <div class="user-profile" *ngIf="collapsed" @fadeInOut>
+            <span class="user-name mb-0">Liam Gallagher</span>
+            <span class="user-role">System Administrator</span>
+        </div>
     </mat-toolbar>
 </div>

@@ -48,6 +48,8 @@ export class UserSidenavComponent implements OnInit {
   navData = navbarData;
   lineName : string = 'N/A'; 
   companyLogo: any = '../../../assets/favicon.ico';
+  companyName: string = "Senselive";  
+
 
   private subscription!: Subscription;
 

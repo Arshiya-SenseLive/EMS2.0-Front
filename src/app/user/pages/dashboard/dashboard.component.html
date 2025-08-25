@@ -1,1 +1,103 @@
-<p>dashboard works!</p>
+<div class=" container-fluid">
+
+  <!-- Header -->
+  <div class="row align-items-center mb-4">
+    <!-- Left: Greeting -->
+    <div class="col-12 col-md-6">
+      <h3>Hello, {{ userName }}!</h3>
+      <p>Track your devices and efficiency in real time ⚡</p>
+    </div>
+    <!-- Right: Icons -->
+    <div class="col-12 col-md-6 text-md-end mt-3 mt-md-0">
+      <button class="btn btn-light rounded-circle me-2">
+        <mat-icon>notifications</mat-icon>
+      </button>
+      <button class="btn btn-light rounded-circle">
+        <mat-icon>settings</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="row g-3 align-items-end mb-4">
+    <div class="col-12 col-sm-6 col-md-3">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Filter Type</mat-label>
+        <mat-select>
+          <mat-option value="device">Individual Device</mat-option>
+          <mat-option value="group">Group</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Select Device</mat-label>
+        <mat-select>
+          <mat-option value="building1">Main Building - Floor 1</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Data Mode</mat-label>
+        <mat-select>
+          <mat-option value="real-time">Real-Time</mat-option>
+          <mat-option value="historical">Historical</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-2">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Time Period</mat-label>
+        <mat-select>
+          <mat-option value="today">Today</mat-option>
+          <mat-option value="week">This Week</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- Apply Filter Btn -->
+    <div class="col-12 col-md-1 text-md-end">
+      <button class="btn btn-success w-100">Apply</button>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="row g-3">
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card text-center p-3">
+        <span class="card-title">KVA</span>
+        <h3>1,245.6 <small>kVA</small></h3>
+        <p>Apparent Power</p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card text-center p-3">
+        <span class="card-title">KWH</span>
+        <h3>8,932.4 <small>kWh</small></h3>
+        <p>Energy Consumption</p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card text-center p-3">
+        <span class="card-title">KVAR</span>
+        <h3>342.1 <small>kVAR</small></h3>
+        <p>Reactive Power</p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="card text-center p-3">
+        <span class="card-title">PF</span>
+        <h3>0.92</h3>
+        <p>Power Factor</p>
+      </div>
+    </div>
+  </div>
+
+</div>
