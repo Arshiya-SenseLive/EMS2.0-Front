@@ -1,1 +1,54 @@
-<p>login works!</p>
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <img
+        style="width: 50px"
+        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20ICON-pWeUYdnNZxYhdOSdEF6Cg6JU2Ak7uX.png"
+        alt=""
+      />
+      <h1 class="logo">Senselive</h1>
+      <p class="tagline">
+        Connecting Machines with Minds, for Smarter Decisions
+      </p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" formControlName="email" />
+        <div>
+          <div *ngIf="email?.invalid && (email?.touched || email?.dirty)" class="error-box">
+            <small *ngIf="email?.errors?.['required']">Email is required</small>
+            <small *ngIf="email?.errors?.['email']">Invalid email format</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" formControlName="password" />
+        <div *ngIf="password?.touched && password?.invalid" class="error-box">
+          <small *ngIf="password?.errors?.['required']"
+            >Password is required</small
+          >
+          <small *ngIf="password?.errors?.['minlength']"
+            >Min 8 characters required</small
+          >
+          <small *ngIf="password?.errors?.['pattern']">
+            Must contain uppercase, lowercase & number
+          </small>
+        </div>
+      </div>
+      <div class="forget-password">
+        <a href="/login/forgot">Forgot Password?</a>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+    <div>
+      <p class="register-link">
+        Don't have an account? <a href="/login/register">Register here</a>
+      </p>
+    </div>
+  </div>
+</div>

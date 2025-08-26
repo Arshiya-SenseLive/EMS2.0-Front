@@ -1,1 +1,396 @@
-<p>register works!</p>
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <img
+        style="width: 50px"
+        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LOGO%20ICON-pWeUYdnNZxYhdOSdEF6Cg6JU2Ak7uX.png"
+        alt=""
+      />
+      <h1 class="logo">Senselive</h1>
+      <h4 style="opacity: 0.95">Welcome to the Energy Dashboard</h4>
+      <!-- <p class="tagline">
+        Thank you for choosing our Energy dashboard. We are excited to have you
+        on board! Before you can start using the dashboard, we kindly ask you to
+        complete the registration process.
+      </p> -->
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <p-stepper [(value)]="activeStep" class="basis-[50rem]">
+        <p-step-list>
+          <p-step [value]="1">Company Details</p-step>
+          <p-step [value]="2">Energy Details</p-step>
+          <p-step [value]="3">Admin Details</p-step>
+        </p-step-list>
+        <p-step-panels>
+          <p-step-panel [value]="1">
+            <ng-template #content let-activateCallback="activateCallback">
+              <div class="form-group">
+                <label for="company_email">Company Email*</label>
+                <input
+                  type="text"
+                  id="company_email"
+                  formControlName="company_email"
+                />
+                <div
+                  *ngIf="
+                    company_email?.invalid &&
+                    (company_email?.touched || company_email?.dirty)
+                  "
+                  class="error-box"
+                >
+                  <small *ngIf="company_email?.errors?.['required']"
+                    >Email is required</small
+                  >
+                  <small *ngIf="company_email?.errors?.['email']"
+                    >Invalid email format</small
+                  >
+                </div>
+              </div>
+              <div class="dual-form-group">
+                <div class="form-group">
+                  <label for="company_name">Company Name*</label>
+                  <input
+                    type="text"
+                    id="company_name"
+                    formControlName="company_name"
+                  />
+                  <div
+                    *ngIf="company_name?.invalid && company_name?.touched"
+                    class="error-box">
+                    <small *ngIf="company_name?.errors?.['required']">
+                      Company Name is required
+                    </small>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="company_location">Company Location*</label>
+                  <input
+                    type="text"
+                    id="company_location"
+                    formControlName="company_location"
+                  />
+                  <div
+                    *ngIf="
+                      company_location?.invalid && company_location?.touched
+                    " class="error-box"
+                  >
+                    <small *ngIf="company_location?.errors?.['required']">
+                      Company Location is required
+                    </small>
+                  </div>
+                </div>
+              </div>
+              <div class="dirButton">
+                <p-button
+                  disabled
+                  label="Back"
+                  severity="secondary"
+                  icon="pi pi-arrow-left"
+                  (onClick)="activateCallback(1)"
+                />
+                <p-button
+                  label="Next"
+                  icon="pi pi-arrow-right"
+                  iconPos="right"
+                  (onClick)="activateCallback(2)"
+                />
+              </div>
+            </ng-template>
+          </p-step-panel>
+          <p-step-panel [value]="2">
+            <ng-template #content let-activateCallback="activateCallback">
+              <div class="dual-form-group">
+                <div class="form-group">
+                  <label for="sanctioned_load">Sanctioned Load*</label>
+                  <input
+                    type="text"
+                    id="sanctioned_load"
+                    formControlName="sanctioned_load"
+                  />
+                  <div
+                    *ngIf="sanctioned_load?.invalid && sanctioned_load?.touched"
+                    class="error-box"
+                  >
+                    <small *ngIf="sanctioned_load?.errors?.['required']">
+                      Sanctioned Load is required
+                    </small>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="contract_demand">Contract Demand*</label>
+                  <input
+                    type="text"
+                    id="contract_demand"
+                    formControlName="contract_demand"
+                  />
+                  <div
+                    *ngIf="contract_demand?.invalid && contract_demand?.touched"
+                    class="error-box"
+                  >
+                    <small *ngIf="contract_demand?.errors?.['required']">
+                      Contract Demand is required
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dual-form-group">
+                <div class="form-group">
+                  <label for="connected_load">Connected Load*</label>
+                  <input
+                    type="text"
+                    id="connected_load"
+                    formControlName="connected_load"
+                  />
+                  <div
+                    *ngIf="connected_load?.invalid && connected_load?.touched"
+                    class="error-box"
+                  >
+                    <small *ngIf="connected_load?.errors?.['required']">
+                      Connected Load is required
+                    </small>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="tariff">Tariff*</label>
+                  <input type="text" id="tariff" formControlName="tariff" />
+                  <div *ngIf="tariff?.invalid && tariff?.touched" class="error-box">
+                    <small *ngIf="tariff?.errors?.['required']">
+                      Tariff is required
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dual-form-group">
+                <div class="form-group">
+                  <label for="perct_of_contract_demand"
+                    >% of Contract Demand</label
+                  >
+                  <input
+                    type="text"
+                    id="perct_of_contract_demand"
+                    formControlName="perct_of_contract_demand"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="electricity_bill">Electricity Bill</label>
+                  <input
+                    type="text"
+                    id="electricity_bill"
+                    formControlName="electricity_bill"
+                  />
+                </div>
+              </div>
+
+              <div class="dual-form-group">
+                <div class="form-group">
+                  <label for="company_name"> Energy Details: </label>
+                  <select
+                    name="energy_details"
+                    id=""
+                    formControlName="energy_details"
+                    placeholder="Energy Details"
+                  >
+                    <option *ngFor="let r of roles" [value]="r.value">
+                      {{ r.label }}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="energy_value">Energy Value</label>
+                  <input
+                    type="text"
+                    id="energy_value"
+                    formControlName="energy_value"
+                  />
+                </div>
+              </div>
+              <div class="dirButton">
+                <p-button
+                  label="Back"
+                  severity="secondary"
+                  icon="pi pi-arrow-left"
+                  (onClick)="activateCallback(1)"
+                />
+                <p-button
+                  label="Next"
+                  icon="pi pi-arrow-right"
+                  iconPos="right"
+                  (onClick)="activateCallback(3)"
+                />
+              </div>
+            </ng-template>
+          </p-step-panel>
+          <p-step-panel [value]="3">
+            <ng-template #content let-activateCallback="activateCallback">
+              <div class="dual-form-group">
+                <div class="form-group">
+                  <label for="first_name">First Name*</label>
+                  <input
+                    type="text"
+                    id="first_name"
+                    formControlName="first_name"
+                  />
+                  <div *ngIf="first_name?.invalid && first_name?.touched" class="error-box">
+                    <small *ngIf="first_name?.errors?.['required']">
+                      Last Name is required
+                    </small>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="company_location">Last Name*</label>
+                  <input
+                    type="text"
+                    id="last_name"
+                    formControlName="last_name"
+                  />
+
+                  <div *ngIf="last_name?.invalid && last_name?.touched" class="error-box">
+                    <small *ngIf="last_name?.errors?.['required']">
+                      Last Name is required
+                    </small>
+                  </div>
+                </div>
+              </div>
+              <div class="dual-form-group">
+                <div class="form-group">
+                  <label for="email">Email*</label>
+                  <input type="text" id="email" formControlName="email" />
+                  <div
+                    *ngIf="email?.invalid && (email?.touched || email?.dirty)"
+                    class="error-box"
+                  >
+                    <small *ngIf="email?.errors?.['required']"
+                      >Email is required</small
+                    >
+                    <small *ngIf="email?.errors?.['email']"
+                      >Invalid email format</small
+                    >
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="designation">Designation*</label>
+                  <input
+                    type="text"
+                    id="designation"
+                    formControlName="designation"
+                  />
+                  <div *ngIf="designation?.invalid && designation?.touched" class="error-box">
+                    <small *ngIf="designation?.errors?.['required']"
+                      >Designation is required</small
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="dual-form-group">
+                <div class="form-group">
+                  <label for="phone_number">Contact Number*</label>
+                  <input
+                    type="text"
+                    id="phone_number"
+                    formControlName="phone_number"
+                  />
+                  <div
+                    *ngIf="
+                      phone_number?.invalid &&
+                      (phone_number?.touched || phone_number?.dirty)
+                    "
+                    class="error-box"
+                  >
+                    <small *ngIf="phone_number?.errors?.['required']"
+                      >Phone Number is required</small
+                    >
+                    <small *ngIf="phone_number?.errors?.['pattern']"
+                      >Invalid Phone Number Format</small
+                    >
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="plant">Plant*</label>
+                  <input type="text" id="plant" formControlName="plant" />
+                  <div *ngIf="plant?.invalid && plant?.touched">
+                    <small *ngIf="plant?.errors?.['required']"
+                      >Plant is required</small
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="dual-form-group">
+                <div class="form-group">
+                  <label for="password">Set Password*</label>
+                  <input
+                    type="password"
+                    id="password"
+                    formControlName="password"
+                  />
+                  <div
+                    *ngIf="
+                      password?.invalid &&
+                      (password?.touched || password?.dirty)
+                    "
+                    class="error-box"
+                  >
+                    <small *ngIf="password?.errors?.['required']"
+                      >Password is required</small
+                    >
+                    <small *ngIf="password?.errors?.['minlength']">
+                      Password must be at least 8 characters long
+                    </small>
+                    <small *ngIf="password?.errors?.['pattern']">
+                      Password must contain at least one uppercase letter, one
+                      lowercase letter, one number, and one special character
+                    </small>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="confirm_password">Confirm Password*</label>
+                  <input
+                    type="password"
+                    id="confirm_password"
+                    formControlName="confirm_password"
+                  />
+                  <div
+                    *ngIf="
+                      confirm_password?.invalid &&
+                      (confirm_password?.touched ||
+                        confirm_password?.dirty ||
+                        registerForm?.errors?.['passwordMismatch'])
+                    "
+                    class="error-box"
+                  >
+                    <small *ngIf="confirm_password?.errors?.['required']"
+                      >Confirm Password is required</small
+                    >
+                    <small *ngIf="registerForm?.errors?.['passwordMismatch']">
+                      Passwords do not match
+                    </small>
+                  </div>
+                </div>
+              </div>
+              <div class="dirButton">
+                <p-button
+                  label="Back"
+                  severity="secondary"
+                  icon="pi pi-arrow-left"
+                  (onClick)="activateCallback(2)"
+                ></p-button>
+                <p-button
+                  disabled
+                  label="Next"
+                  icon="pi pi-arrow-right"
+                  iconPos="right"
+                  (onClick)="activateCallback(3)"
+                ></p-button>
+              </div>
+              <button type="submit" [disabled]="registerForm.invalid">
+                Register
+              </button>
+            </ng-template>
+          </p-step-panel>
+        </p-step-panels>
+      </p-stepper>
+    </form>
+  </div>
+</div>

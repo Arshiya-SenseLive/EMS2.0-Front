@@ -4,11 +4,11 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ForgotComponent } from './pages/forgot/forgot.component';
 
-const routes: Routes = [  {
-   path: 'login', component: LoginComponent },
+const routes: Routes = [
+  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'forgot', component: ForgotComponent },
-    { path: '', redirectTo: 'login', pathMatch: 'full' }
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

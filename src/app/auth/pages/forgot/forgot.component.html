@@ -1,1 +1,35 @@
-<p>forgot works!</p>
+<div class="login-container">
+  <div *ngIf="!submitMail" class="login-card">
+    <h3>Please Enter Your Registered Email</h3>
+    <form [formGroup]="mailForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <input
+          type="text"
+          id="email"
+          formControlName="email"
+          placeholder="example@gmail.com"
+        />
+        <div>
+          <div
+            *ngIf="email?.invalid && (email?.touched || email?.dirty)"
+            class="error-box"
+          >
+            <small *ngIf="email?.errors?.['required']">Email is required</small>
+            <small *ngIf="email?.errors?.['email']">Invalid email format</small>
+          </div>
+        </div>
+        <button type="submit" [disabled]="mailForm.invalid">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="submitMail" class="email-sent">
+    <img src="assets/mail-unscreen.gif" alt="" />
+    <h3>Email Link has been sent to your Registered Email</h3>
+    <p class="tagline">
+      Please click on the link in your
+      <a href="https://mail.google.com/">Email</a> to reset your password.
+    </p>
+  </div>
+
+</div>

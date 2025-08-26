@@ -1,0 +1,191 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  padding: 0px 20px;
+
+  /* background-image: url("/assets/bg.png"); */
+  background: linear-gradient(
+    170deg,
+    var(--primary-color) 0%,
+    var(--primary-dark) 30%,
+    #000000 70%
+  );
+  background-size: cover;
+  background-position: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+color: var(--secondary-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* background: rgba(0, 0, 0, 0.58); */
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(4px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Card stays centered by grid; size clamps prevent overflow */
+.login-card {
+  z-index: 1;
+  width: min(600px, 92vw);
+  /* width: auto; */
+  margin: auto;
+  padding: 5px 30px;
+  border-radius: 14px;
+  /* background: rgba(252, 250, 250, 0.2); */
+  background: rgba(255, 255, 255, 0);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+/* Header */
+.login-header {
+  margin-bottom: 25px;
+}
+.logo {
+  font-size: 2.3rem;
+  font-weight: 600;
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.tagline {
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+/* Form */
+.form-group {
+  text-align: left;
+  margin-bottom: 18px;
+  width: 100%;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  opacity: 0.85;
+  color: var(--secondary-color);
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  height: 44px; /* consistent height */
+  padding: 0 14px; /* even padding on sides */
+
+  border: 1px solid rgb(47, 46, 46);
+  border-radius: 6px; /* match button’s curve */
+
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-size: 0.95rem; /* slightly smaller */
+
+  transition: background 0.25s ease, border-color 0.25s ease,
+    box-shadow 0.25s ease;
+  box-sizing: border-box; /* avoids overflow issues */
+}
+.form-group input::placeholder {
+  color: #ffffff;
+}
+.form-group input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgb(47, 46, 46);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.05);
+}
+.dual-form-group {
+  display: flex;
+  justify-content: space-between;
+
+  gap: 10px;
+  /* margin-bottom: 18px; */
+}
+@media (max-width: 768px) {
+  .dual-form-group {
+    flex-direction: column;
+  }
+}
+/* Button */
+button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  /* background: linear-gradient(to right, #3b82f6, #2563eb); */
+ background: var(--primary-color);
+  color: var(--secondary-light);
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+button:hover:not([disabled]) {
+  background: var(--primary-dark);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+button:disabled {
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.dirButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+::ng-deep .p-step-active .p-step-number {
+  background: #fff !important;
+  border: 0 !important;
+  color:  var(--secondary-color) !important;
+  transition: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+::ng-deep .p-step-number {
+  background: var(--primary-color) !important;
+  border: 0 !important;
+  color: #fff !important;
+  transition: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+::ng-deep .p-step-title {
+  color: var(--secondary-color) !important;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+::ng-deep .p-step-active .p-step-title {
+  color: var(--secondary-color) !important;
+  border-bottom: #fff 1px solid !important;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+::ng-deep .p-button {
+  background: var(--primary-color) !important;
+  color: #fff !important;
+  border: 1px black solid !important;
+}
+.error-box{
+  color: red;
+  font-size: small;
+}
+.error-box small{
+  width: max-content;
+}

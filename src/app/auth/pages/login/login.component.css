@@ -1,0 +1,181 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  padding: 0px;
+
+  /* background-image: url("/assets/bg.png"); */
+  background: linear-gradient(
+    170deg,
+    var(--primary-color) 0%,
+    var(--primary-dark) 30%,
+    #000000 70%
+  );
+  background-size: cover;
+  background-position: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  color: var(--secondary-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* background: rgba(0, 0, 0, 0.58); */
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(4px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Card stays centered by grid; size clamps prevent overflow */
+.login-card {
+  z-index: 1;
+  /* width: min(600px, 92vw); */
+  width: auto;
+  margin: auto;
+  padding: 10px 40px;
+  border-radius: 14px;
+  /* background: rgba(252, 250, 250, 0.2); */
+  background: rgba(255, 255, 255, 0);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+.left-image {
+  width: 50%;
+  height: 100vh;
+}
+.left-image img {
+  height: 120%;
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  /* background-blend-mode:; */
+}
+/* Header */
+.login-header {
+  margin-bottom: 25px;
+}
+.logo {
+  font-size: 2.3rem;
+  font-weight: 600;
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.tagline {
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+/* Form */
+.form-group {
+  text-align: left;
+  margin-bottom: 18px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+.form-group input {
+  width: 100%;
+  height: 44px; /* consistent height */
+  padding: 0 14px; /* even padding on sides */
+
+  border: 1px solid rgb(47, 46, 46);
+  border-radius: 6px; /* match button’s curve */
+
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-size: 0.95rem; /* slightly smaller */
+
+  transition: background 0.25s ease, border-color 0.25s ease,
+    box-shadow 0.25s ease;
+  box-sizing: border-box; /* avoids overflow issues */
+}
+.form-group input::placeholder {
+  color: black;
+}
+.form-group input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgb(47, 46, 46);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.05);
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  /* background: linear-gradient(to right, #3b82f6, #2563eb); */
+  background: var(--primary-color);
+  color: white;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+button:hover:not([disabled]) {
+  background: var(--primary-dark);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+button:disabled {
+  box-shadow: none;
+  background: var(--primary-dark);
+  cursor: not-allowed;
+}
+.forget-password {
+  margin: 0px 0px 10px 0px;
+  font-size: 0.9rem;
+  text-align: start;
+  position: relative;
+}
+.forget-password a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  display: inline-block; 
+}
+.forget-password a:hover {
+  /* text-decoration: underline; */
+  /* color: #003f33; */
+  transform: scale(1.05);
+  
+}
+.register-link {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+.register-link a {
+  color: var(--secondary-dark);
+  text-decoration: underline;
+  transition: all 0.2s ease-in-out;
+  display: inline-block; 
+  cursor: pointer;
+}
+.register-link a:hover {
+  /* text-decoration: underline; */
+  /* color: #003f33; */
+  transform: scale(1.05);
+}
+.error-box{
+  color: red;
+  font-size: small;
+}

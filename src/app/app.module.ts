@@ -4,12 +4,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { providePrimeNG } from 'primeng/config';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { OverlayModule, Overlay, ScrollStrategyOptions } from '@angular/cdk/overlay';
 import { MAT_MENU_SCROLL_STRATEGY } from '@angular/material/menu';
 import { MAT_SELECT_SCROLL_STRATEGY } from '@angular/material/select';
 import { MAT_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@angular/material/tooltip';
-
+import Aura from '@primeng/themes/aura';
 @NgModule({
   declarations: [
     AppComponent
@@ -22,6 +24,13 @@ import { MAT_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@angular/material/
   ],
   providers: [
     provideClientHydration(),
+    provideAnimationsAsync(),
+    provideAnimations(),
+    providePrimeNG({
+      theme: {
+        preset: Aura,
+      },
+    }),
     Overlay,
     MAT_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER,
     {
