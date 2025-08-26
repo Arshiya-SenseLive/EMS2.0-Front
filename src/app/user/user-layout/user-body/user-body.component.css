@@ -10,16 +10,21 @@
     font-smooth: always;
     font-family: "Nunito", sans-serif;
     overflow-y: auto;
+
 }
 
 .body-trimmed {
     width: calc(100% - 15rem);
     margin-left: 15rem;
+      
+
 }
 
 .body-md-screen {
     width: calc(100% - 4rem);
     margin-left: 4rem;
+      
+
 }
 
 .padding {

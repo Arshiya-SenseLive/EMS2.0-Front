@@ -1,18 +1,18 @@
 <div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''">
 
     <!-- Top logo (unchanged) -->
-   <div class="company-section" (click)="toggleCollapse()">
-  <div class="logo-image-wrapper">
-    <img [src]="companyLogo || 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg'"
-         alt="Company Logo" class="logo-img" />
-  </div>
+    <div class="company-section" (click)="toggleCollapse()">
+        <div class="logo-image-wrapper">
+            <img [src]="companyLogo || 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg'"
+                alt="Company Logo" class="logo-img" />
+        </div>
 
-  <!-- Show company name + tagline only when expanded -->
- <div class="company-info" [class.show]="collapsed" @fadeInOut>
-  <span class="company-name">{{ companyName }}</span>
-  <span class="company-tagline">Energy Management System</span>
-</div>
-</div>
+        <!-- Show company name + tagline only when expanded -->
+        <div class="company-info" [class.show]="collapsed" @fadeInOut>
+            <span class="company-name">{{ companyName }}</span>
+            <span class="company-tagline">Energy Management System</span>
+        </div>
+    </div>
 
 
 

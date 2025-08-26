@@ -6,88 +6,57 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-    // user info (can be dynamic later)
-  userName: string = 'Admin';
+  userName = 'Admin';
+  showFilters = false;   // hidden by default
 
-  // filters (for binding if needed)
-  filterType: string = '';
-  selectedDevice: string = '';
-  dataMode: string = '';
-  timePeriod: string = '';
+  filter = {
+    type: 'device' as 'device' | 'group',
+    deviceId: null as string | null,
+    groupId: null as string | null,
+    mode: 'real-time',
+    period: 'today'
+  };
 
-  // card data (you could fetch this from API)
-  cards = [
-    { title: 'KVA', value: '1,245.6', unit: 'kVA', description: 'Apparent Power' },
-    { title: 'KWH', value: '8,932.4', unit: 'kWh', description: 'Energy Consumption' },
-    { title: 'KVAR', value: '342.1', unit: 'kVAR', description: 'Reactive Power' },
-    { title: 'PF', value: '0.92', unit: '', description: 'Power Factor' }
+  filterTypeOptions = [
+    { label: 'Individual Device', value: 'device' },
+    { label: 'Group', value: 'group' }
+  ];
+  deviceOptions = [{ id: 'building1', name: 'Main Building - Floor 1' }];
+  groupOptions  = [{ id: 'g1', name: 'Plant A – Transformers' }];
+  dataModeOptions = [
+    { label: 'Real-Time', value: 'real-time' },
+    { label: 'Historical', value: 'historical' }
+  ];
+  timePeriodOptions = [
+    { label: 'Today', value: 'today' },
+    { label: 'This Week', value: 'week' },
+    { label: 'This Month', value: 'month' }
   ];
 
-  // event handlers
-  onNotificationClick(): void {
-    console.log('🔔 Notification clicked');
-    // future: open a dropdown or snackbar
+  toggleFilters() { this.showFilters = !this.showFilters; }
+
+  // Selection handlers (keep your existing ones if you prefer)
+  onFilterTypeChange(item:any){ this.filter.type = item.value; this.filter.deviceId = this.filter.groupId = null; }
+  onDeviceChange(item:any){ this.filter.deviceId = item.id; }
+  onGroupChange(item:any){ this.filter.groupId = item.id; }
+  onModeChange(item:any){ this.filter.mode = item.value; }
+  onPeriodChange(item:any){ this.filter.period = item.value; }
+
+  applyFilters() {
+    // TODO: call API with this.filter
+    // Auto-close after applying (like your figma example)
+    this.showFilters = false;
   }
 
-  onSettingsClick(): void {
-    console.log('⚙️ Settings clicked');
-    // future: route to settings page or open modal
+  // ---- Badge helper utilities ----
+  getLabel(list: {label:string; value:string}[], value: string): string {
+    return list.find(x => x.value === value)?.label ?? value;
   }
-
-  onApplyFilter(): void {
-    console.log('✅ Applying filters:', {
-      filterType: this.filterType,
-      selectedDevice: this.selectedDevice,
-      dataMode: this.dataMode,
-      timePeriod: this.timePeriod
-    });
-    // TODO: call API with these filters
+  getDeviceName(id: string|null): string {
+    return this.deviceOptions.find(d => d.id === id)?.name ?? 'Device';
   }
-
-  // example state
-filter = {
-  type: 'device',        // 'device' | 'group'
-  deviceId: null,
-  groupId: null,
-  mode: 'real-time',     // 'real-time' | 'historical'
-  period: 'today'        // 'today' | 'week' | 'month' ...
-};
-
-filterTypeOptions = [
-  { label: 'Individual Device', value: 'device' },
-  { label: 'Group', value: 'group' }
-];
-
-deviceOptions = [
-  { id: 'building1', name: 'Main Building - Floor 1' },
-  // ...
-];
-
-groupOptions = [
-  { id: 'g1', name: 'Plant A – Transformers' },
-  // ...
-];
-
-dataModeOptions = [
-  { label: 'Real-Time', value: 'real-time' },
-  { label: 'Historical', value: 'historical' }
-];
-
-timePeriodOptions = [
-  { label: 'Today', value: 'today' },
-  { label: 'This Week', value: 'week' },
-  { label: 'This Month', value: 'month' }
-];
-
-// handlers (optional)
-onFilterTypeChange(item:any){ this.filter.type = item.value; this.filter.deviceId = this.filter.groupId = null; }
-onDeviceChange(item:any){ this.filter.deviceId = item.id; }
-onGroupChange(item:any){ this.filter.groupId = item.id; }
-onModeChange(item:any){ this.filter.mode = item.value; }
-onPeriodChange(item:any){ this.filter.period = item.value; }
-
-applyFilters(){
-  // call API / emit event with `this.filter`
+  getGroupName(id: string|null): string {
+    return this.groupOptions.find(g => g.id === id)?.name ?? 'Group';
+  }
 }
 
-}

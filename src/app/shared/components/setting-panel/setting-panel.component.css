@@ -1,0 +1,223 @@
+.settings-backdrop {
+  position: fixed;
+  top: 64px;
+  /* match toolbar height */
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 64px);
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 1500;
+}
+
+.settings-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.settings-panel {
+  position: fixed;
+  top: 64px;
+  right: 0;
+  height: calc(100vh - 64px);
+  background: white;
+  z-index: 2001;
+  width: 100%;
+  overflow-y: auto;
+  /* take full screen on mobile */
+  max-width: 60%;
+  /* optional max width for larger screens */
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.settings-panel.open {
+  transform: translateX(0);
+}
+
+@media (min-width: 768px) {
+  .settings-panel {
+    width: 40%;
+  }
+
+}
+
+@media (min-width: 1024px) {
+  .settings-panel {
+    width: 30%;
+  }
+}
+
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: var(--primary-color, #3f51b5);
+  /* fallback to Indigo */
+  color: #fff;
+}
+
+.panel-header h5 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.panel-content {
+  padding: 16px;
+  overflow-y: auto;
+  min-height: calc(100vh - 130px);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.panel-content::-webkit-scrollbar {
+  display: none;
+}
+
+.dialog-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.dialog-content {
+  padding-top: 0;
+}
+
+.dialog-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.toggle-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+  border-radius: 8px;
+  height: 40px;
+  color: var(--primary-color);
+}
+
+.dialog-actions {
+  padding: 10px 24px;
+}
+
+.update-btn {
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  padding: 8px 8px;
+  color: white;
+}
+
+.cancel-btn {
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  border-radius: 5px;
+  padding: 7px 10px;
+  background-color: white;
+}
+
+
+::ng-deep .mat-mdc-slide-toggle .mdc-switch {
+  height: 20px !important;
+  width: 45px !important;
+  padding: 0 !important;
+}
+
+::ng-deep .mat-mdc-slide-toggle .mdc-switch__track {
+  height: 28px !important;
+  border-radius: 15px !important;
+}
+
+::ng-deep .mat-mdc-slide-toggle .mdc-switch__handle {
+  height: 28px !important;
+  width: 30px !important;
+  border-radius: 50% !important;
+}
+
+
+.form-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* Spacing between form groups */
+.form-grid .form-group,
+.form-check,
+.form-check.form-switch {
+  margin-bottom: 16px;
+}
+
+/* Style the close icon button */
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.close-btn:hover {
+  opacity: 0.8;
+}
+
+.update-btn {
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  padding: 8px 8px;
+  color: white;
+  width: 100%;
+}
+
+
+.form-check-input:checked {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+
+.form-check-input:focus {
+  outline: none;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  /* optional, ensures no solid border */
+}
+
+.form-toggle-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 767px) {
+  .form-toggle-group {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 768px) {
+  .form-toggle-group {
+    flex-direction: row;
+    align-items: center;
+  }
+}

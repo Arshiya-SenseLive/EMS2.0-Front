@@ -5,11 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material.module';
 import { SelectComponent } from './components/select/select.component';
-
+import { SettingPanelComponent } from './components/setting-panel/setting-panel.component';
 
 @NgModule({
   declarations: [
-    SelectComponent
+    SelectComponent,
+    SettingPanelComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +25,8 @@ import { SelectComponent } from './components/select/select.component';
     RouterModule,
     MaterialModule,
     OverlayModule,
-    SelectComponent
+    SelectComponent,
+    SettingPanelComponent
   ]
 })
 export class SharedModule { }
