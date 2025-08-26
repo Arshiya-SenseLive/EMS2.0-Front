@@ -4,10 +4,13 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material.module';
+import { SelectComponent } from './components/select/select.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    SelectComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -20,7 +23,8 @@ import { MaterialModule } from './material.module';
     FormsModule,
     RouterModule,
     MaterialModule,
-    OverlayModule
+    OverlayModule,
+    SelectComponent
   ]
 })
 export class SharedModule { }

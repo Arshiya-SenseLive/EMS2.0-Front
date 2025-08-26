@@ -1,0 +1,19 @@
+<div class="custom-dropdown" [class.open]="isOpen">
+  <div class="dropdown-header" (click)="toggleDropdown($event)">
+    <span class="dropdown-selected">
+      {{ selectedItem ? selectedItem[displayKey] : placeholder }}
+    </span>
+    <span class="arrow">&#9662;</span>
+  </div>
+
+  <div class="dropdown-panel">
+    <div
+      *ngFor="let item of items"
+      class="dropdown-option"
+      [class.selected]="selectedItem?.[valueKey] === item[valueKey]"
+      (click)="selectItem(item, $event)">
+      {{ item[displayKey] }}
+    </div>
+  </div>
+</div>
+
