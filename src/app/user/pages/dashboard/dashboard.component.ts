@@ -43,4 +43,51 @@ export class DashboardComponent {
     });
     // TODO: call API with these filters
   }
+
+  // example state
+filter = {
+  type: 'device',        // 'device' | 'group'
+  deviceId: null,
+  groupId: null,
+  mode: 'real-time',     // 'real-time' | 'historical'
+  period: 'today'        // 'today' | 'week' | 'month' ...
+};
+
+filterTypeOptions = [
+  { label: 'Individual Device', value: 'device' },
+  { label: 'Group', value: 'group' }
+];
+
+deviceOptions = [
+  { id: 'building1', name: 'Main Building - Floor 1' },
+  // ...
+];
+
+groupOptions = [
+  { id: 'g1', name: 'Plant A – Transformers' },
+  // ...
+];
+
+dataModeOptions = [
+  { label: 'Real-Time', value: 'real-time' },
+  { label: 'Historical', value: 'historical' }
+];
+
+timePeriodOptions = [
+  { label: 'Today', value: 'today' },
+  { label: 'This Week', value: 'week' },
+  { label: 'This Month', value: 'month' }
+];
+
+// handlers (optional)
+onFilterTypeChange(item:any){ this.filter.type = item.value; this.filter.deviceId = this.filter.groupId = null; }
+onDeviceChange(item:any){ this.filter.deviceId = item.id; }
+onGroupChange(item:any){ this.filter.groupId = item.id; }
+onModeChange(item:any){ this.filter.mode = item.value; }
+onPeriodChange(item:any){ this.filter.period = item.value; }
+
+applyFilters(){
+  // call API / emit event with `this.filter`
+}
+
 }

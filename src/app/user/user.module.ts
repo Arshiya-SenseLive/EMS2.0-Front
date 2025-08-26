@@ -11,6 +11,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AnalyticsComponent } from './pages/analytics/analytics.component';
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
 import { ReportComponent } from './pages/report/report.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ReportComponent } from './pages/report/report.component';
     DashboardComponent,
     AnalyticsComponent,
     ConfigurationComponent,
-    ReportComponent
+    ReportComponent,
+    SettingsComponent
   ],
   imports: [
     CommonModule,

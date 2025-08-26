@@ -1,69 +1,111 @@
 <div class=" container-fluid">
 
+ 
   <!-- Header -->
-  <div class="row align-items-center mb-4">
-    <!-- Left: Greeting -->
-    <div class="col-12 col-md-6">
-      <h3>Hello, {{ userName }}!</h3>
-      <p>Track your devices and efficiency in real time ⚡</p>
+<div class="row align-items-center mb-4 dashboard-header">
+  <!-- Left: Greeting -->
+  <div class="col-12 col-md-6">
+    <div class="header-left">
+      <h3 class="m-0">Hello, {{ userName }}!</h3>
+      <p class="m-0">Track your devices and efficiency in real time ⚡</p>
     </div>
-    <!-- Right: Icons -->
-    <div class="col-12 col-md-6 text-md-end mt-3 mt-md-0">
-      <button class="btn btn-light rounded-circle me-2">
+  </div>
+
+  <!-- Right: Actions -->
+  <div class="col-12 col-md-6 mt-3 mt-md-0">
+    <div class="header-actions justify-content-md-end">
+      <button class="icon-btn" aria-label="Notifications">
         <mat-icon>notifications</mat-icon>
+        <span class="notify-dot" aria-hidden="true"></span>
       </button>
-      <button class="btn btn-light rounded-circle">
+      <button class="icon-btn" aria-label="Settings">
         <mat-icon>settings</mat-icon>
       </button>
     </div>
   </div>
+</div>
+
 
   <!-- Filters -->
-  <div class="row g-3 align-items-end mb-4">
-    <div class="col-12 col-sm-6 col-md-3">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Filter Type</mat-label>
-        <mat-select>
-          <mat-option value="device">Individual Device</mat-option>
-          <mat-option value="group">Group</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+ <!-- FILTER CARD -->
+<div class="filter-card card shadow-sm mb-4">
+  <div class="card-body">
+    <div class="row g-3 align-items-end">
 
-    <div class="col-12 col-sm-6 col-md-3">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Select Device</mat-label>
-        <mat-select>
-          <mat-option value="building1">Main Building - Floor 1</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+      <!-- Filter Type -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <label class="form-label">Filter Type</label>
+        <app-select
+          [(ngModel)]="filter.type"
+          [items]="filterTypeOptions"
+          displayKey="label"
+          valueKey="value"
+          placeholder="Select filter type"
+          (selectionChange)="onFilterTypeChange($event)">
+        </app-select>
+      </div>
 
-    <div class="col-12 col-sm-6 col-md-3">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Data Mode</mat-label>
-        <mat-select>
-          <mat-option value="real-time">Real-Time</mat-option>
-          <mat-option value="historical">Historical</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+      <!-- Device / Group (dynamic by type) -->
+      <div class="col-12 col-sm-6 col-md-3" *ngIf="filter.type === 'device'">
+        <label class="form-label">Select Device</label>
+        <app-select
+          [(ngModel)]="filter.deviceId"
+          [items]="deviceOptions"
+          displayKey="name"
+          valueKey="id"
+          placeholder="Choose a device"
+          (selectionChange)="onDeviceChange($event)">
+        </app-select>
+      </div>
 
-    <div class="col-12 col-sm-6 col-md-2">
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Time Period</mat-label>
-        <mat-select>
-          <mat-option value="today">Today</mat-option>
-          <mat-option value="week">This Week</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+      <div class="col-12 col-sm-6 col-md-3" *ngIf="filter.type === 'group'">
+        <label class="form-label">Select Group</label>
+        <app-select
+          [(ngModel)]="filter.groupId"
+          [items]="groupOptions"
+          displayKey="name"
+          valueKey="id"
+          placeholder="Choose a group"
+          (selectionChange)="onGroupChange($event)">
+        </app-select>
+      </div>
 
-    <!-- Apply Filter Btn -->
-    <div class="col-12 col-md-1 text-md-end">
-      <button class="btn btn-success w-100">Apply</button>
+      <!-- Data Mode -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <label class="form-label">Data Mode</label>
+        <app-select
+          [(ngModel)]="filter.mode"
+          [items]="dataModeOptions"
+          displayKey="label"
+          valueKey="value"
+          placeholder="Select mode"
+          (selectionChange)="onModeChange($event)">
+        </app-select>
+      </div>
+
+      <!-- Time Period -->
+      <div class="col-12 col-sm-6 col-md-2">
+        <label class="form-label">Time Period</label>
+        <app-select
+          [(ngModel)]="filter.period"
+          [items]="timePeriodOptions"
+          displayKey="label"
+          valueKey="value"
+          placeholder="Select period"
+          (selectionChange)="onPeriodChange($event)">
+        </app-select>
+      </div>
+
+      <!-- Apply Button (right aligned on md+, full width on mobile) -->
+      <div class="col-12 col-md-1 d-grid d-md-flex justify-content-md-end">
+        <button class="btn btn-success apply-btn" (click)="applyFilters()">
+          Apply
+        </button>
+      </div>
     </div>
   </div>
+</div>
+
 
   <!-- Cards -->
   <div class="row g-3">
