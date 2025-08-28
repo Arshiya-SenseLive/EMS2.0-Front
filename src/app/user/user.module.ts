@@ -12,7 +12,7 @@ import { AnalyticsComponent } from './pages/analytics/analytics.component';
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
 import { ReportComponent } from './pages/report/report.component';
 import { SettingsComponent } from './pages/settings/settings.component';
-
+import { TabsModule } from 'primeng/tabs';
 @NgModule({
   declarations: [
     UserHeaderComponent,
@@ -23,12 +23,8 @@ import { SettingsComponent } from './pages/settings/settings.component';
     AnalyticsComponent,
     ConfigurationComponent,
     ReportComponent,
-    SettingsComponent
+    SettingsComponent,
   ],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    SharedModule 
-  ]
+  imports: [CommonModule, UserRoutingModule, SharedModule, TabsModule],
 })
 export class UserModule {}

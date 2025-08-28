@@ -1,1 +1,126 @@
-<p>settings works!</p>
+<div class="setting-page">
+  <p-tabs value="1">
+    <p-tablist>
+      <p-tab value="1"> User Profile </p-tab>
+      <p-tab value="2"> Company Profile </p-tab>
+    </p-tablist>
+    <p-tabpanels>
+      <!-- USER PROFILE -->
+      <p-tabpanel value="1">
+        <div class="profile-container">
+
+          <!-- First Name -->
+          <div class="profile-header">
+            <h5>First Name :</h5>
+            <div *ngIf="editingField !== 'firstName'" style="display: flex; align-items: center">
+              <p>{{ profile.firstName }}</p>
+              <button class="edit-btn" (click)="onEdit('firstName')"><i class="pi pi-pencil"></i></button>
+            </div>
+            <div *ngIf="editingField === 'firstName'" style="display: flex; align-items: center">
+              <input type="text" [(ngModel)]="profile.firstName" />
+              <button class="edit-btn" (click)="onSave('firstName')"><i class="pi pi-check"></i></button>
+            </div>
+          </div>
+
+          <!-- Last Name -->
+          <div class="profile-header">
+            <h5>Last Name :</h5>
+            <div *ngIf="editingField !== 'lastName'" style="display: flex; align-items: center">
+              <p>{{ profile.lastName }}</p>
+              <button class="edit-btn" (click)="onEdit('lastName')"><i class="pi pi-pencil"></i></button>
+            </div>
+            <div *ngIf="editingField === 'lastName'" style="display: flex; align-items: center">
+              <input type="text" [(ngModel)]="profile.lastName" />
+              <button class="edit-btn" (click)="onSave('lastName')"><i class="pi pi-check"></i></button>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="profile-header">
+            <h5>Admin Email :</h5>
+            <div *ngIf="editingField !== 'email'" style="display: flex; align-items: center">
+              <p>{{ profile.email }}</p>
+              <button class="edit-btn" (click)="onEdit('email')"><i class="pi pi-pencil"></i></button>
+            </div>
+            <div *ngIf="editingField === 'email'" style="display: flex; align-items: center">
+              <input type="email" [(ngModel)]="profile.email" />
+              <button class="edit-btn" (click)="onSave('email')"><i class="pi pi-check"></i></button>
+            </div>
+          </div>
+
+          <!-- Designation -->
+          <div class="profile-header">
+            <h5>Designation :</h5>
+            <div *ngIf="editingField !== 'designation'" style="display: flex; align-items: center">
+              <p>{{ profile.designation }}</p>
+              <button class="edit-btn" (click)="onEdit('designation')"><i class="pi pi-pencil"></i></button>
+            </div>
+            <div *ngIf="editingField === 'designation'" style="display: flex; align-items: center">
+              <input type="text" [(ngModel)]="profile.designation" />
+              <button class="edit-btn" (click)="onSave('designation')"><i class="pi pi-check"></i></button>
+            </div>
+          </div>
+
+          <!-- Contact -->
+          <div class="profile-header">
+            <h5>Contact No. :</h5>
+            <div *ngIf="editingField !== 'contact'" style="display: flex; align-items: center">
+              <p>{{ profile.contact }}</p>
+              <button class="edit-btn" (click)="onEdit('contact')"><i class="pi pi-pencil"></i></button>
+            </div>
+            <div *ngIf="editingField === 'contact'" style="display: flex; align-items: center">
+              <input type="text" [(ngModel)]="profile.contact" />
+              <button class="edit-btn" (click)="onSave('contact')"><i class="pi pi-check"></i></button>
+            </div>
+          </div>
+
+          <!-- Plant -->
+          <div class="profile-header">
+            <h5>Plant :</h5>
+            <div *ngIf="editingField !== 'plant'" style="display: flex; align-items: center">
+              <p>{{ profile.plant }}</p>
+              <button class="edit-btn" (click)="onEdit('plant')"><i class="pi pi-pencil"></i></button>
+            </div>
+            <div *ngIf="editingField === 'plant'" style="display: flex; align-items: center">
+              <input type="text" [(ngModel)]="profile.plant" />
+              <button class="edit-btn" (click)="onSave('plant')"><i class="pi pi-check"></i></button>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="profile-header">
+            <h5>Change Password :</h5>
+            <div *ngIf="editingField !== 'password'" style="display: flex; align-items: center">
+              <p>••••••••</p>
+              <button class="edit-btn" (click)="onEdit('password')"><i class="pi pi-pencil"></i></button>
+            </div>
+            <div *ngIf="editingField === 'password'" style="display: flex; align-items: center">
+              <input type="password" [(ngModel)]="profile.password" />
+              <button class="edit-btn" (click)="onSave('password')"><i class="pi pi-check"></i></button>
+            </div>
+          </div>
+
+        </div>
+      </p-tabpanel>
+
+      <!-- COMPANY PROFILE -->
+      <p-tabpanel value="2">
+        <div class="profile-container">
+
+          <div class="profile-header" *ngFor="let field of companyFields">
+            <h5>{{ field.label }}</h5>
+            <div *ngIf="editingField !== field.key" style="display: flex; align-items: center">
+              <p>{{ company[field.key] }}</p>
+              <button class="edit-btn" (click)="onEdit(field.key)"><i class="pi pi-pencil"></i></button>
+            </div>
+            <div *ngIf="editingField === field.key" style="display: flex; align-items: center">
+              <input type="text" [(ngModel)]="company[field.key]" />
+              <button class="edit-btn" (click)="onSave(field.key)"><i class="pi pi-check"></i></button>
+            </div>
+          </div>
+
+        </div>
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
+</div>
