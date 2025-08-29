@@ -43,8 +43,7 @@ export class DashboardComponent {
   onPeriodChange(item:any){ this.filter.period = item.value; }
 
   applyFilters() {
-    // TODO: call API with this.filter
-    // Auto-close after applying (like your figma example)
+   
     this.showFilters = false;
   }
 
@@ -57,6 +56,18 @@ export class DashboardComponent {
   }
   getGroupName(id: string|null): string {
     return this.groupOptions.find(g => g.id === id)?.name ?? 'Group';
+  }
+
+  getTrendClass(value: number): string {
+    if (value > 0) return 'trend-up';   
+    if (value < 0) return 'trend-down';  
+    return 'trend-normal';              
+  }
+
+  getTrendIcon(value: number): string {
+    if (value > 0) return 'trending_up';
+    if (value < 0) return 'trending_down';
+    return 'trending_flat';  // neutral icon
   }
 }
 

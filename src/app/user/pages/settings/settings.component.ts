@@ -83,4 +83,6 @@ export class SettingsComponent {
     console.log(`${field} updated:`, this.profile[field] || this.company[field]);
     this.editingField = null;
   }
+
+  
 }

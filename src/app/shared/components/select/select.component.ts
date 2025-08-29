@@ -6,8 +6,7 @@ import {
   ElementRef,
   HostListener,
   forwardRef,
-  OnChanges,
-  SimpleChanges
+  ViewChild
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -17,47 +16,41 @@ import {
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
-  styleUrl: './select.component.css',
+  styleUrls: ['./select.component.css'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => SelectComponent),
     multi: true
   }]
 })
-export class SelectComponent {
-   @Input() items: any[] = [];
+export class SelectComponent implements ControlValueAccessor {
+  @Input() items: any[] = [];
   @Input() displayKey: string = 'name';
   @Input() valueKey: string = 'id';
   @Input() placeholder: string = 'Select';
-
-
   @Output() selectionChange = new EventEmitter<any>();
 
   isOpen = false;
   selectedItem: any = null;
-
   private internalValue: any = null;
+  private onChange = (_: any) => {};
+  private onTouched = () => {};
 
-  private onChange = (_: any) => { };
-  private onTouched = () => { };
+  @ViewChild('headerRef', { static: true }) headerRef!: ElementRef<HTMLElement>;
+  @ViewChild('dropdownPanel', { static: true }) panelRef!: ElementRef<HTMLElement>;
 
-  constructor(private _eref: ElementRef) { }
+  constructor(private _eref: ElementRef) {}
 
   writeValue(value: any): void {
     this.internalValue = value;
     this.updateSelectedItem();
   }
-
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
+  registerOnChange(fn: any): void { this.onChange = fn; }
+  registerOnTouched(fn: any): void { this.onTouched = fn; }
 
   toggleDropdown(event: MouseEvent) {
     this.isOpen = !this.isOpen;
+    if (this.isOpen) this.positionOverlay();
     event.stopPropagation();
   }
 
@@ -77,15 +70,25 @@ export class SelectComponent {
     }
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['items']) {
-      this.updateSelectedItem();
-    }
+  @HostListener('window:resize') onResize() {
+    if (this.isOpen) this.positionOverlay();
+  }
+  @HostListener('window:scroll') onScroll() {
+    if (this.isOpen) this.positionOverlay();
   }
 
   private updateSelectedItem(): void {
     if (this.items && this.internalValue !== null) {
       this.selectedItem = this.items.find(item => item[this.valueKey] === this.internalValue);
     }
+  }
+
+  private positionOverlay() {
+    const rect = this.headerRef.nativeElement.getBoundingClientRect();
+    const panel = this.panelRef.nativeElement;
+
+    panel.style.setProperty('--dd-top', `${rect.bottom + 2}px`);
+    panel.style.setProperty('--dd-left', `${rect.left}px`);
+    panel.style.setProperty('--dd-width', `${rect.width}px`);
   }
 }
