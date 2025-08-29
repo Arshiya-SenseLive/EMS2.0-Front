@@ -91,7 +91,7 @@
           <div class="profile-header">
             <h5>Change Password :</h5>
             <div *ngIf="editingField !== 'password'" style="display: flex; align-items: center">
-              <p>••••••••</p>
+              <p>{{ getMaskedPassword(profile.password) }}</p>
               <button class="edit-btn" (click)="onEdit('password')"><i class="pi pi-pencil"></i></button>
             </div>
             <div *ngIf="editingField === 'password'" style="display: flex; align-items: center">

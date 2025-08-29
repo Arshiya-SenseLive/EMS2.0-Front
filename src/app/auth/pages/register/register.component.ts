@@ -11,9 +11,9 @@ export class RegisterComponent {
   registerForm!: FormGroup;
   activeStep: number = 1;
   roles = [
-    { label: 'User', value: 'user' },
-    { label: 'Admin', value: 'admin' },
-    { label: 'Guest', value: 'guest' },
+    { label: 'Solar', value: 'solar' },
+    { label: 'Digital', value: 'digital' },
+    { label: 'Solar and Digital', value: 'both' },
   ];
   constructor(private fb: FormBuilder) {}
 
@@ -29,7 +29,7 @@ export class RegisterComponent {
         },
       ],
       company_location: ['', Validators.required],
-
+      energy_consumer: ['LT', Validators.required],
       sanctioned_load: ['', Validators.required],
       contract_demand: ['', Validators.required],
       connected_load: ['', Validators.required],
@@ -37,7 +37,7 @@ export class RegisterComponent {
       perct_of_contract_demand: [''],
       electricity_bill: [''],
 
-      energy_details: [''],
+      energy_details: ['solar', Validators.required],
       energy_value: [''],
 
       // Admin Details
@@ -108,7 +108,7 @@ export class RegisterComponent {
   get plant() {
     return this.registerForm.get('plant');
   }
-  
+
   onRegister(): void {
     // if (this.registerForm.valid) {
     //   console.log('Login form submitted:', this.registerForm.value);

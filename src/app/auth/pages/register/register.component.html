@@ -57,7 +57,8 @@
                   />
                   <div
                     *ngIf="company_name?.invalid && company_name?.touched"
-                    class="error-box">
+                    class="error-box"
+                  >
                     <small *ngIf="company_name?.errors?.['required']">
                       Company Name is required
                     </small>
@@ -73,7 +74,8 @@
                   <div
                     *ngIf="
                       company_location?.invalid && company_location?.touched
-                    " class="error-box"
+                    "
+                    class="error-box"
                   >
                     <small *ngIf="company_location?.errors?.['required']">
                       Company Location is required
@@ -100,6 +102,27 @@
           </p-step-panel>
           <p-step-panel [value]="2">
             <ng-template #content let-activateCallback="activateCallback">
+              <div class="consumer-group">
+                <label class="label">Energy Consumer :</label>
+                <div class="options">
+                  <label>
+                    <input
+                      type="radio"
+                      formControlName="energy_consumer"
+                      value="LT"
+                    />
+                    LT
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      formControlName="energy_consumer"
+                      value="HT"
+                    />
+                    HT
+                  </label>
+                </div>
+              </div>
               <div class="dual-form-group">
                 <div class="form-group">
                   <label for="sanctioned_load">Sanctioned Load*</label>
@@ -155,7 +178,10 @@
                 <div class="form-group">
                   <label for="tariff">Tariff*</label>
                   <input type="text" id="tariff" formControlName="tariff" />
-                  <div *ngIf="tariff?.invalid && tariff?.touched" class="error-box">
+                  <div
+                    *ngIf="tariff?.invalid && tariff?.touched"
+                    class="error-box"
+                  >
                     <small *ngIf="tariff?.errors?.['required']">
                       Tariff is required
                     </small>
@@ -233,9 +259,12 @@
                     id="first_name"
                     formControlName="first_name"
                   />
-                  <div *ngIf="first_name?.invalid && first_name?.touched" class="error-box">
+                  <div
+                    *ngIf="first_name?.invalid && first_name?.touched"
+                    class="error-box"
+                  >
                     <small *ngIf="first_name?.errors?.['required']">
-                      Last Name is required
+                      First Name is required
                     </small>
                   </div>
                 </div>
@@ -247,7 +276,10 @@
                     formControlName="last_name"
                   />
 
-                  <div *ngIf="last_name?.invalid && last_name?.touched" class="error-box">
+                  <div
+                    *ngIf="last_name?.invalid && last_name?.touched"
+                    class="error-box"
+                  >
                     <small *ngIf="last_name?.errors?.['required']">
                       Last Name is required
                     </small>
@@ -277,7 +309,10 @@
                     id="designation"
                     formControlName="designation"
                   />
-                  <div *ngIf="designation?.invalid && designation?.touched" class="error-box">
+                  <div
+                    *ngIf="designation?.invalid && designation?.touched"
+                    class="error-box"
+                  >
                     <small *ngIf="designation?.errors?.['required']"
                       >Designation is required</small
                     >
@@ -310,7 +345,10 @@
                 <div class="form-group">
                   <label for="plant">Plant*</label>
                   <input type="text" id="plant" formControlName="plant" />
-                  <div *ngIf="plant?.invalid && plant?.touched">
+                  <div
+                    *ngIf="plant?.invalid && plant?.touched"
+                    class="error-box"
+                  >
                     <small *ngIf="plant?.errors?.['required']"
                       >Plant is required</small
                     >
