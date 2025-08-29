@@ -8,7 +8,7 @@ interface Profile {
   contact: string;
   plant: string;
   password: string;
-  [key: string]: any;   // 👈 allow dynamic access
+  [key: string]: any;   
 }
 
 interface Company {
@@ -24,7 +24,7 @@ interface Company {
   bill: string;
   energyDetail: string;
   energyValue: string;
-  [key: string]: any;   // 👈 allow dynamic access
+  [key: string]: any;   
 }
 
 @Component({
@@ -83,6 +83,8 @@ export class SettingsComponent {
     console.log(`${field} updated:`, this.profile[field] || this.company[field]);
     this.editingField = null;
   }
-
-  
+  onSaveProfile(){
+    console.log('Profile updated:', this.profile);
+    this.editingField = null;
+  }
 }

@@ -10,17 +10,29 @@ p-tabs{
 }
 ::ng-deep .p-tablist-tab-list {
     background-color: white !important;
+    justify-content: space-between !important;
 }
 ::ng-deep .p-tab{
     color: var(--primary-color) !important;
     font-weight: bold !important;
+    width: 50%;
+}
+::ng-deep .p-tab-active{
+    /* background-color: #f9f9f9 !important; */
+    background-color: white !important;
+    border-radius: 6px 6px 0px 0px;
+    box-shadow: grey 0px -1px 5px -2px !important;
 }
 .profile-container {
   display: grid;
   grid-template-columns: 1fr 1fr; /* two per row */
   gap: 20px;
 }
-
+@media (max-width: 768px) {
+  .profile-container {
+    grid-template-columns: 1fr; /* stack in one column */
+  }
+}
 .profile-header {
   display: flex;
   align-items: center;
@@ -51,4 +63,33 @@ p-tabs{
   color: var(--primary-color);
   cursor: pointer;
   font-size: 16px;
+}
+.profile-header input{
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 14px;
+  width: 100%;
+  background-color: white;
+  color: var(--secondary-color);
+}
+.profile-header input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+.save-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+}
+.save-btn button{
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
 }
