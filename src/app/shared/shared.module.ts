@@ -6,18 +6,24 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material.module';
 import { SelectComponent } from './components/select/select.component';
 import { SettingPanelComponent } from './components/setting-panel/setting-panel.component';
+import { HighchartsChartComponent } from 'highcharts-angular';
+
+
 
 @NgModule({
   declarations: [
     SelectComponent,
-    SettingPanelComponent
+    SettingPanelComponent,
+    
   ],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule,
     MaterialModule,
-    OverlayModule
+    OverlayModule,
+    HighchartsChartComponent
+    
   ],
   exports:[
     CommonModule,
@@ -26,7 +32,8 @@ import { SettingPanelComponent } from './components/setting-panel/setting-panel.
     MaterialModule,
     OverlayModule,
     SelectComponent,
-    SettingPanelComponent
+    SettingPanelComponent,
+    HighchartsChartComponent
   ]
 })
 export class SharedModule { }

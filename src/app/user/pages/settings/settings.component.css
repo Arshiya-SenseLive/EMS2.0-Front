@@ -19,9 +19,9 @@ p-tabs{
 }
 ::ng-deep .p-tab-active{
     /* background-color: #f9f9f9 !important; */
-    background-color: white !important;
-    border-radius: 6px 6px 0px 0px;
-    box-shadow: grey 0px -1px 5px -2px !important;
+    background-color: #f9f9f9 !important;
+    /* border-radius: 6px 6px 0px 0px;
+    box-shadow: grey 0px -1px 5px -2px !important; */
 }
 .profile-container {
   display: grid;

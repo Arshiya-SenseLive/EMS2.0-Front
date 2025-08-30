@@ -1,7 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { providePrimeNG } from 'primeng/config';
@@ -12,15 +11,17 @@ import { MAT_MENU_SCROLL_STRATEGY } from '@angular/material/menu';
 import { MAT_SELECT_SCROLL_STRATEGY } from '@angular/material/select';
 import { MAT_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@angular/material/tooltip';
 import Aura from '@primeng/themes/aura';
+
 @NgModule({
+  
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    OverlayModule
+    OverlayModule,
   ],
   providers: [
     provideClientHydration(),

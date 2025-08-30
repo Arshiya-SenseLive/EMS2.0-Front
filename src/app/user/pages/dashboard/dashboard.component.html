@@ -182,7 +182,7 @@
         <h3>1,245.6 <small>kVA</small></h3>
         <p>Apparent Power</p>
         <span [ngClass]="getTrendClass(5.2)" class="trend">
-          <mat-icon class="trend-icon">{{ getTrendIcon(5.2) }}</mat-icon>
+          <mat-icon>{{ getTrendIcon(5.2) }}</mat-icon>
           <span class="trend-value">5.2%</span>
         </span>
       </div>
@@ -192,7 +192,7 @@
     <div class="col-12 col-sm-6 col-lg-3">
       <div class="stat-card">
         <div class="card-header">
-          <mat-icon >energy_savings_leaf</mat-icon>
+          <mat-icon>energy_savings_leaf</mat-icon>
           <span>KWH</span>
           <span class="status high">high</span>
         </div>
@@ -200,7 +200,7 @@
         <p>Energy Consumption</p>
 
         <span [ngClass]="getTrendClass(12.8)" class="trend">
-          <mat-icon class="trend-icon">{{ getTrendIcon(12.8) }}</mat-icon>
+          <mat-icon>{{ getTrendIcon(12.8) }}</mat-icon>
 
           <span class="trend-value">12.8%</span>
         </span>
@@ -218,7 +218,7 @@
         <h3>342.1 <small>kVAR</small></h3>
         <p>Reactive Power</p>
         <span [ngClass]="getTrendClass(-2.1)" class="trend">
-          <mat-icon class="trend-icon">{{ getTrendIcon(-2.1) }}</mat-icon>
+          <mat-icon>{{ getTrendIcon(-2.1) }}</mat-icon>
           <span class="trend-value">2.1%</span>
         </span>
       </div>
@@ -235,10 +235,54 @@
         <h3>0.92</h3>
         <p>Power Factor</p>
         <span [ngClass]="getTrendClass(0)" class="trend">
-          <mat-icon class="trend-icon">{{ getTrendIcon(0) }}</mat-icon>
-          <span class="trend-value">0%</span>
+          <mat-icon>{{ getTrendIcon(0) }}</mat-icon>
+          <span class="trend-value">0.0%</span>
         </span>
       </div>
     </div>
   </div>
+
+   <!-- Energy & Demand Section -->
+<div class="row mt-4">
+  <!-- Donut Chart -->
+  <div class="col-12 col-lg-6">
+    <div class="chart-card">
+      <h5>Energy Consumption Overview</h5>
+      <p class="text-muted small">
+        Distribution of energy consumption across all live devices for selected period
+      </p>
+
+      <!-- Time Filter -->
+      <div class="time-filter mb-2">
+        <button *ngFor="let t of donutTimeFilters"
+                (click)="updateDonutData(t.value)"
+                [class.active]="selectedDonutFilter === t.value">
+          {{t.label}}
+        </button>
+      </div>
+
+      <highcharts-chart 
+        [Highcharts]="Highcharts" 
+        [options]="donutOptions" 
+        style="width:100%; height:300px; display:block">
+      </highcharts-chart>
+    </div>
+  </div>
+
+  <!-- Line Chart -->
+  <div class="col-12 col-lg-6">
+    <div class="chart-card">
+      <h5>Max vs Actual Demand</h5>
+      <p class="text-muted small">
+        Comparison of peak demand against actual usage over time (real-time)
+      </p>
+      <highcharts-chart 
+        [Highcharts]="Highcharts" 
+        [options]="lineOptions" 
+        style="width:100%; height:300px; display:block">
+      </highcharts-chart>
+    </div>
+  </div>
+</div>
+
 </div>

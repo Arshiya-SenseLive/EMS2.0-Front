@@ -87,6 +87,21 @@
   z-index: 9;
 }
 
+.collapsible {
+  max-height: 0;
+  padding: 0;
+  transition: max-height .26s ease, padding .2s ease;
+  overflow: hidden; /* keep for collapsed state */
+}
+
+.collapsible.open {
+  max-height: 600px;
+  padding: 20px;
+  overflow: visible; /* allow dropdowns to escape */
+}
+
+
+
 .filter-card .form-label {
   color: var(--primary-color);
   font-size: 14px;
@@ -268,18 +283,6 @@
 
 
 /* kill the old max-height/overflow approach */
-.collapsible {
-  overflow: hidden;
-  max-height: 0;
-  padding: 0;
-  transition: max-height .26s ease, padding .2s ease;
-}
-
-.collapsible.open {
-  max-height: 600px;
-  padding: 20px;
-}
-
 
 
 /* Current badges */
@@ -313,15 +316,18 @@
   font-weight: 500;
 }
 
-.trend-icon{
-   font-size: 15px;   
-  
+.trend mat-icon {
+  font-size: 14px; 
+  height: 14px;    
+  width: 14px;
+  line-height: 14px;
 }
 
 .trend-up {
   color: rgb(27, 221, 27);
   font-size: 13px;
 }
+
 .trend-down {
   color: red;
     font-size: 13px;
@@ -332,4 +338,34 @@
     font-size: 13px;
 
 }
+
+.chart-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+}
+
+.time-filter {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.time-filter button {
+  padding: 4px 10px;
+  border: 1px solid var(--primary-color);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--primary-dark);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.time-filter button.active {
+  background: var(--primary-color);
+  color: #fff;
+}
+
 

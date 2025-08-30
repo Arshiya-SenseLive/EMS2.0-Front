@@ -6,7 +6,8 @@ import {
   ElementRef,
   HostListener,
   forwardRef,
-  ViewChild
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -23,34 +24,40 @@ import {
     multi: true
   }]
 })
-export class SelectComponent implements ControlValueAccessor {
+export class SelectComponent implements ControlValueAccessor, OnChanges {
   @Input() items: any[] = [];
   @Input() displayKey: string = 'name';
   @Input() valueKey: string = 'id';
   @Input() placeholder: string = 'Select';
+
+
   @Output() selectionChange = new EventEmitter<any>();
 
   isOpen = false;
   selectedItem: any = null;
+
   private internalValue: any = null;
-  private onChange = (_: any) => {};
-  private onTouched = () => {};
 
-  @ViewChild('headerRef', { static: true }) headerRef!: ElementRef<HTMLElement>;
-  @ViewChild('dropdownPanel', { static: true }) panelRef!: ElementRef<HTMLElement>;
+  private onChange = (_: any) => { };
+  private onTouched = () => { };
 
-  constructor(private _eref: ElementRef) {}
+  constructor(private _eref: ElementRef) { }
 
   writeValue(value: any): void {
     this.internalValue = value;
     this.updateSelectedItem();
   }
-  registerOnChange(fn: any): void { this.onChange = fn; }
-  registerOnTouched(fn: any): void { this.onTouched = fn; }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
 
   toggleDropdown(event: MouseEvent) {
     this.isOpen = !this.isOpen;
-    if (this.isOpen) this.positionOverlay();
     event.stopPropagation();
   }
 
@@ -70,25 +77,15 @@ export class SelectComponent implements ControlValueAccessor {
     }
   }
 
-  @HostListener('window:resize') onResize() {
-    if (this.isOpen) this.positionOverlay();
-  }
-  @HostListener('window:scroll') onScroll() {
-    if (this.isOpen) this.positionOverlay();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['items']) {
+      this.updateSelectedItem();
+    }
   }
 
   private updateSelectedItem(): void {
     if (this.items && this.internalValue !== null) {
       this.selectedItem = this.items.find(item => item[this.valueKey] === this.internalValue);
     }
-  }
-
-  private positionOverlay() {
-    const rect = this.headerRef.nativeElement.getBoundingClientRect();
-    const panel = this.panelRef.nativeElement;
-
-    panel.style.setProperty('--dd-top', `${rect.bottom + 2}px`);
-    panel.style.setProperty('--dd-left', `${rect.left}px`);
-    panel.style.setProperty('--dd-width', `${rect.width}px`);
   }
 }

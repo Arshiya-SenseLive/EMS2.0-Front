@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserRoutingModule } from './user-routing.module';
 import { SharedModule } from '../shared/shared.module';
-
 import { UserHeaderComponent } from './user-layout/user-header/user-header.component';
 import { UserBodyComponent } from './user-layout/user-body/user-body.component';
 import { UserSidenavComponent } from './user-layout/user-sidenav/user-sidenav.component';
