@@ -11,7 +11,6 @@ import { MAT_MENU_SCROLL_STRATEGY } from '@angular/material/menu';
 import { MAT_SELECT_SCROLL_STRATEGY } from '@angular/material/select';
 import { MAT_TOOLTIP_SCROLL_STRATEGY_FACTORY_PROVIDER } from '@angular/material/tooltip';
 import Aura from '@primeng/themes/aura';
-
 @NgModule({
   
   declarations: [

@@ -12,6 +12,8 @@ import { ConfigurationComponent } from './pages/configuration/configuration.comp
 import { ReportComponent } from './pages/report/report.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { TabsModule } from 'primeng/tabs';
+import { HighchartsChartModule } from 'highcharts-angular';
+
 @NgModule({
   declarations: [
     UserHeaderComponent,
@@ -24,6 +26,12 @@ import { TabsModule } from 'primeng/tabs';
     ReportComponent,
     SettingsComponent,
   ],
-  imports: [CommonModule, UserRoutingModule, SharedModule, TabsModule],
+  imports: [
+    CommonModule,
+    UserRoutingModule,
+    SharedModule,
+    TabsModule,
+    HighchartsChartModule,
+  ],
 })
 export class UserModule {}

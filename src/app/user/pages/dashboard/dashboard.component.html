@@ -242,47 +242,51 @@
     </div>
   </div>
 
-   <!-- Energy & Demand Section -->
-<div class="row mt-4">
-  <!-- Donut Chart -->
-  <div class="col-12 col-lg-6">
-    <div class="chart-card">
-      <h5>Energy Consumption Overview</h5>
-      <p class="text-muted small">
-        Distribution of energy consumption across all live devices for selected period
-      </p>
+  <!-- Energy & Demand Section -->
+  <div class="row mt-4">
+    <!-- Donut Chart -->
+    <div class="col-12 col-lg-6">
+      <div class="chart-card">
+        <h5>Energy Consumption Overview</h5>
+        <p class="text-muted small">
+          Distribution of energy consumption across all live devices for
+          selected period
+        </p>
 
-      <!-- Time Filter -->
-      <div class="time-filter mb-2">
-        <button *ngFor="let t of donutTimeFilters"
-                (click)="updateDonutData(t.value)"
-                [class.active]="selectedDonutFilter === t.value">
-          {{t.label}}
-        </button>
+        <!-- Time Filter -->
+        <div class="time-filter mb-2">
+          <button
+            *ngFor="let t of donutTimeFilters"
+            (click)="updateDonutData(t.value)"
+            [class.active]="selectedDonutFilter === t.value"
+          >
+            {{ t.label }}
+          </button>
+        </div>
+
+        <highcharts-chart
+          [Highcharts]="Highcharts"
+          [options]="donutOptions"
+          style="width: 100%; height: 300px; display: block"
+        >
+        </highcharts-chart>
       </div>
+    </div>
 
-      <highcharts-chart 
-        [Highcharts]="Highcharts" 
-        [options]="donutOptions" 
-        style="width:100%; height:300px; display:block">
-      </highcharts-chart>
+    <!-- Line Chart -->
+    <div class="col-12 col-lg-6">
+      <div class="chart-card">
+        <h5>Max vs Actual Demand</h5>
+        <p class="text-muted small">
+          Comparison of peak demand against actual usage over time (real-time)
+        </p>
+        <highcharts-chart
+          [Highcharts]="Highcharts"
+          [options]="lineOptions"
+          style="width: 100%; height: 300px; display: block"
+        >
+        </highcharts-chart>
+      </div>
     </div>
   </div>
-
-  <!-- Line Chart -->
-  <div class="col-12 col-lg-6">
-    <div class="chart-card">
-      <h5>Max vs Actual Demand</h5>
-      <p class="text-muted small">
-        Comparison of peak demand against actual usage over time (real-time)
-      </p>
-      <highcharts-chart 
-        [Highcharts]="Highcharts" 
-        [options]="lineOptions" 
-        style="width:100%; height:300px; display:block">
-      </highcharts-chart>
-    </div>
-  </div>
-</div>
-
 </div>

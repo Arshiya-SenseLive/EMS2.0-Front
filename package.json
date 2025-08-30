@@ -28,21 +28,13 @@
     "bootstrap-icons": "^1.13.1",
     "chart.js": "^4.5.0",
     "express": "^4.18.2",
-<<<<<<< HEAD
-    "ng2-charts": "^8.0.0",
-    "ngx-toastr": "^19.0.0",
-    "primeicons": "^7.0.0",
-    "primeng": "^18.0.2",
-    "rxjs": "~7.8.0",
-=======
-    "highcharts": "^12.3.0",
-    "highcharts-angular": "^5.0.0",
+    "highcharts": "^11.4.8",
+    "highcharts-angular": "^4.0.0",
     "ng2-charts": "^7.0.0",
     "ngx-toastr": "^17.0.2",
     "primeicons": "^7.0.0",
-    "primeng": "^17.18.15",
+    "primeng": "^18.0.2",
     "rxjs": "^7.8.2",
->>>>>>> 768278b961b63ef0dd9f2d73e336f9170f3508c7
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
   },
@@ -53,14 +45,12 @@
     "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
-    "autoprefixer": "^10.4.21",
     "jasmine-core": "~5.2.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "tailwindcss": "^3.4.17",
     "typescript": "~5.5.2"
   }
 }

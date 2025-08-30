@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material.module';
 import { SelectComponent } from './components/select/select.component';
 import { SettingPanelComponent } from './components/setting-panel/setting-panel.component';
-import { HighchartsChartComponent } from 'highcharts-angular';
+import { HighchartsChartComponent, HighchartsChartModule } from 'highcharts-angular';
 
 
 
@@ -22,7 +22,7 @@ import { HighchartsChartComponent } from 'highcharts-angular';
     RouterModule,
     MaterialModule,
     OverlayModule,
-    HighchartsChartComponent
+    HighchartsChartModule
     
   ],
   exports:[
@@ -33,7 +33,7 @@ import { HighchartsChartComponent } from 'highcharts-angular';
     OverlayModule,
     SelectComponent,
     SettingPanelComponent,
-    HighchartsChartComponent
+    HighchartsChartModule
   ]
 })
 export class SharedModule { }
