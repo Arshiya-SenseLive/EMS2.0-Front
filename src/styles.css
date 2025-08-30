@@ -3,6 +3,10 @@
 @import '@angular/cdk/overlay-prebuilt.css';
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import "primeicons/primeicons.css";
+/* @import "tailwindcss"; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /* Global reset and box sizing */
 *, *::before, *::after {
   box-sizing: border-box;

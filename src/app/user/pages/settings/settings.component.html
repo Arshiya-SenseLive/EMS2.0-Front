@@ -7,124 +7,156 @@
     <p-tabpanels>
       <!-- USER PROFILE -->
       <p-tabpanel value="1">
-        <div class="profile-container">
-
-          <!-- First Name -->
-          <div class="profile-header">
-            <h5>First Name :</h5>
-            <div *ngIf="editingField !== 'firstName'" style="display: flex; align-items: center">
-              <p>{{ profile.firstName }}</p>
-              <button class="edit-btn" (click)="onEdit('firstName')"><i class="pi pi-pencil"></i></button>
+        <form [formGroup]="profileForm">
+          <div class="profile-container">
+            <!-- First Name -->
+            <div class="profile-header">
+              <h5>First Name :</h5>
+              <div *ngIf="editingField !== 'firstName'" style="display:flex;align-items:center">
+                <p>{{ f['firstName'].value }}</p>
+                <button class="edit-btn" (click)="onEdit('firstName')"><i class="pi pi-pencil"></i></button>
+              </div>
+              <div *ngIf="editingField === 'firstName'" style="display:flex;align-items:center">
+                <input type="text" formControlName="firstName" />
+                <button class="edit-btn" (click)="onSave('firstName')"><i class="pi pi-check"></i></button>
+              </div>
+              <div *ngIf="f['firstName'].invalid && f['firstName'].touched" class="error-box">
+                <small>First Name is required</small>
+              </div>
             </div>
-            <div *ngIf="editingField === 'firstName'" style="display: flex; align-items: center">
-              <input type="text" [(ngModel)]="profile.firstName" />
-              <button class="edit-btn" (click)="onSave('firstName')"><i class="pi pi-check"></i></button>
+
+            <!-- Last Name -->
+            <div class="profile-header">
+              <h5>Last Name :</h5>
+              <div *ngIf="editingField !== 'lastName'" style="display:flex;align-items:center">
+                <p>{{ f['lastName'].value }}</p>
+                <button class="edit-btn" (click)="onEdit('lastName')"><i class="pi pi-pencil"></i></button>
+              </div>
+              <div *ngIf="editingField === 'lastName'" style="display:flex;align-items:center">
+                <input type="text" formControlName="lastName" />
+                <button class="edit-btn" (click)="onSave('lastName')"><i class="pi pi-check"></i></button>
+              </div>
+              <div *ngIf="f['lastName'].invalid && f['lastName'].touched" class="error-box">
+                <small>Last Name is required</small>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="profile-header">
+              <h5>Admin Email :</h5>
+              <div *ngIf="editingField !== 'email'" style="display:flex;align-items:center">
+                <p>{{ f['email'].value }}</p>
+                <button class="edit-btn" (click)="onEdit('email')"><i class="pi pi-pencil"></i></button>
+              </div>
+              <div *ngIf="editingField === 'email'" style="display:flex;align-items:center">
+                <input type="email" formControlName="email" />
+                <button class="edit-btn" (click)="onSave('email')"><i class="pi pi-check"></i></button>
+              </div>
+              <div *ngIf="f['email'].invalid && f['email'].touched" class="error-box">
+                <small *ngIf="f['email'].errors?.['required']">Email is required</small>
+                <small *ngIf="f['email'].errors?.['email']">Invalid email format</small>
+              </div>
+            </div>
+
+            <!-- Designation -->
+            <div class="profile-header">
+              <h5>Designation :</h5>
+              <div *ngIf="editingField !== 'designation'" style="display:flex;align-items:center">
+                <p>{{ f['designation'].value }}</p>
+                <button class="edit-btn" (click)="onEdit('designation')"><i class="pi pi-pencil"></i></button>
+              </div>
+              <div *ngIf="editingField === 'designation'" style="display:flex;align-items:center">
+                <input type="text" formControlName="designation" />
+                <button class="edit-btn" (click)="onSave('designation')"><i class="pi pi-check"></i></button>
+              </div>
+              <div *ngIf="f['designation'].invalid && f['designation'].touched" class="error-box">
+                <small>Designation is required</small>
+              </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="profile-header">
+              <h5>Contact No. :</h5>
+              <div *ngIf="editingField !== 'contact'" style="display:flex;align-items:center">
+                <p>{{ f['contact'].value }}</p>
+                <button class="edit-btn" (click)="onEdit('contact')"><i class="pi pi-pencil"></i></button>
+              </div>
+              <div *ngIf="editingField === 'contact'" style="display:flex;align-items:center">
+                <input type="text" formControlName="contact" />
+                <button class="edit-btn" (click)="onSave('contact')"><i class="pi pi-check"></i></button>
+              </div>
+              <div *ngIf="f['contact'].invalid && f['contact'].touched" class="error-box">
+                <small *ngIf="f['contact'].errors?.['required']">Contact Number is required</small>
+                <small *ngIf="f['contact'].errors?.['pattern']">Invalid Phone Number Format</small>
+              </div>
+            </div>
+
+            <!-- Plant -->
+            <div class="profile-header">
+              <h5>Plant :</h5>
+              <div *ngIf="editingField !== 'plant'" style="display:flex;align-items:center">
+                <p>{{ f['plant'].value }}</p>
+                <button class="edit-btn" (click)="onEdit('plant')"><i class="pi pi-pencil"></i></button>
+              </div>
+              <div *ngIf="editingField === 'plant'" style="display:flex;align-items:center">
+                <input type="text" formControlName="plant" />
+                <button class="edit-btn" (click)="onSave('plant')"><i class="pi pi-check"></i></button>
+              </div>
+              <div *ngIf="f['plant'].invalid && f['plant'].touched" class="error-box">
+                <small>Plant is required</small>
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="profile-header">
+              <h5>Change Password :</h5>
+              <div *ngIf="editingField !== 'password'" style="display:flex;align-items:center">
+                <p>{{ getMaskedPassword(f['password'].value) }}</p>
+                <button class="edit-btn" (click)="onEdit('password')"><i class="pi pi-pencil"></i></button>
+              </div>
+              <div *ngIf="editingField === 'password'" style="display:flex;align-items:center">
+                <input type="password" formControlName="password" />
+                <button class="edit-btn" (click)="onSave('password')"><i class="pi pi-check"></i></button>
+              </div>
+              <div *ngIf="f['password'].invalid && f['password'].touched" class="error-box">
+                <small *ngIf="f['password'].errors?.['required']">Password is required</small>
+                <small *ngIf="f['password'].errors?.['minlength']">Password must be at least 8 characters long</small>
+                <small *ngIf="f['password'].errors?.['pattern']">
+                  Must contain uppercase, lowercase, number, and special character
+                </small>
+              </div>
             </div>
           </div>
-
-          <!-- Last Name -->
-          <div class="profile-header">
-            <h5>Last Name :</h5>
-            <div *ngIf="editingField !== 'lastName'" style="display: flex; align-items: center">
-              <p>{{ profile.lastName }}</p>
-              <button class="edit-btn" (click)="onEdit('lastName')"><i class="pi pi-pencil"></i></button>
-            </div>
-            <div *ngIf="editingField === 'lastName'" style="display: flex; align-items: center">
-              <input type="text" [(ngModel)]="profile.lastName" />
-              <button class="edit-btn" (click)="onSave('lastName')"><i class="pi pi-check"></i></button>
-            </div>
+          <div class="save-btn">
+            <button class="save-btn" type="button" (click)="onSaveProfile()">Save Changes</button>
           </div>
-
-          <!-- Email -->
-          <div class="profile-header">
-            <h5>Admin Email :</h5>
-            <div *ngIf="editingField !== 'email'" style="display: flex; align-items: center">
-              <p>{{ profile.email }}</p>
-              <button class="edit-btn" (click)="onEdit('email')"><i class="pi pi-pencil"></i></button>
-            </div>
-            <div *ngIf="editingField === 'email'" style="display: flex; align-items: center">
-              <input type="email" [(ngModel)]="profile.email" />
-              <button class="edit-btn" (click)="onSave('email')"><i class="pi pi-check"></i></button>
-            </div>
-          </div>
-
-          <!-- Designation -->
-          <div class="profile-header">
-            <h5>Designation :</h5>
-            <div *ngIf="editingField !== 'designation'" style="display: flex; align-items: center">
-              <p>{{ profile.designation }}</p>
-              <button class="edit-btn" (click)="onEdit('designation')"><i class="pi pi-pencil"></i></button>
-            </div>
-            <div *ngIf="editingField === 'designation'" style="display: flex; align-items: center">
-              <input type="text" [(ngModel)]="profile.designation" />
-              <button class="edit-btn" (click)="onSave('designation')"><i class="pi pi-check"></i></button>
-            </div>
-          </div>
-
-          <!-- Contact -->
-          <div class="profile-header">
-            <h5>Contact No. :</h5>
-            <div *ngIf="editingField !== 'contact'" style="display: flex; align-items: center">
-              <p>{{ profile.contact }}</p>
-              <button class="edit-btn" (click)="onEdit('contact')"><i class="pi pi-pencil"></i></button>
-            </div>
-            <div *ngIf="editingField === 'contact'" style="display: flex; align-items: center">
-              <input type="text" [(ngModel)]="profile.contact" />
-              <button class="edit-btn" (click)="onSave('contact')"><i class="pi pi-check"></i></button>
-            </div>
-          </div>
-
-          <!-- Plant -->
-          <div class="profile-header">
-            <h5>Plant :</h5>
-            <div *ngIf="editingField !== 'plant'" style="display: flex; align-items: center">
-              <p>{{ profile.plant }}</p>
-              <button class="edit-btn" (click)="onEdit('plant')"><i class="pi pi-pencil"></i></button>
-            </div>
-            <div *ngIf="editingField === 'plant'" style="display: flex; align-items: center">
-              <input type="text" [(ngModel)]="profile.plant" />
-              <button class="edit-btn" (click)="onSave('plant')"><i class="pi pi-check"></i></button>
-            </div>
-          </div>
-
-          <!-- Password -->
-          <div class="profile-header">
-            <h5>Change Password :</h5>
-            <div *ngIf="editingField !== 'password'" style="display: flex; align-items: center">
-              <p>{{ getMaskedPassword(profile.password) }}</p>
-              <button class="edit-btn" (click)="onEdit('password')"><i class="pi pi-pencil"></i></button>
-            </div>
-            <div *ngIf="editingField === 'password'" style="display: flex; align-items: center">
-              <input type="password" [(ngModel)]="profile.password" />
-              <button class="edit-btn" (click)="onSave('password')"><i class="pi pi-check"></i></button>
-            </div>
-          </div>
-        </div>
-        <div class="save-btn">
-          <button class="save-btn" (click)="onSaveProfile()">Save Changes</button>
-        </div>
+        </form>
       </p-tabpanel>
 
       <!-- COMPANY PROFILE -->
       <p-tabpanel value="2">
-        <div class="profile-container">
-
-          <div class="profile-header" *ngFor="let field of companyFields">
-            <h5>{{ field.label }}</h5>
-            <div *ngIf="editingField !== field.key" style="display: flex; align-items: center">
-              <p>{{ company[field.key] }}</p>
-              <button class="edit-btn" (click)="onEdit(field.key)"><i class="pi pi-pencil"></i></button>
-            </div>
-            <div *ngIf="editingField === field.key" style="display: flex; align-items: center">
-              <input type="text" [(ngModel)]="company[field.key]" />
-              <button class="edit-btn" (click)="onSave(field.key)"><i class="pi pi-check"></i></button>
+        <form [formGroup]="companyForm">
+          <div class="profile-container">
+            <div class="profile-header" *ngFor="let field of companyFields">
+              <h5>{{ field.label }}</h5>
+              <div *ngIf="editingField !== field.key" style="display:flex;align-items:center">
+                <p>{{ c[field.key].value }}</p>
+                <button class="edit-btn" (click)="onEdit(field.key)"><i class="pi pi-pencil"></i></button>
+              </div>
+              <div *ngIf="editingField === field.key" style="display:flex;align-items:center">
+                <input type="text" [formControlName]="field.key" />
+                <button class="edit-btn" (click)="onSave(field.key)"><i class="pi pi-check"></i></button>
+              </div>
+              <div *ngIf="c[field.key].invalid && c[field.key].touched" class="error-box">
+                <small *ngIf="c[field.key].errors?.['required']">{{ field.label }} is required</small>
+                <small *ngIf="c[field.key].errors?.['email']">Invalid email format</small>
+              </div>
             </div>
           </div>
-
-        </div>
-        <div class="save-btn">
-          <button class="save-btn" (click)="onSaveProfile()">Save Changes</button>
-        </div>
+          <div class="save-btn">
+            <button class="save-btn" type="button" (click)="onSaveProfile()">Save Changes</button>
+          </div>
+        </form>
       </p-tabpanel>
     </p-tabpanels>
   </p-tabs>

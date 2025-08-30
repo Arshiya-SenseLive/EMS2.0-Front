@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 interface Profile {
   firstName: string;
@@ -32,33 +33,10 @@ interface Company {
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css'],
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
   editingField: string | null = null;
-
-  profile: Profile = {
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'john.doe@email.com',
-    designation: 'Manager',
-    contact: '9876543210',
-    plant: 'Plant 1',
-    password: 'johndoe@123',
-  };
-
-  company: Company = {
-    email: 'company@email.com',
-    name: 'Company Pvt. Ltd.',
-    location: 'Mumbai, India',
-    consumer: 'LT',
-    sanctionedLoad: '120',
-    contractDemand: '100',
-    connectedLoad: '90',
-    tariff: 'Industrial',
-    contractPercentage: '80%',
-    bill: '₹50,000',
-    energyDetail: 'Solar',
-    energyValue: '250 KW',
-  };
+  profileForm!: FormGroup;
+  companyForm!: FormGroup;
 
   companyFields = [
     { key: 'email', label: 'Company Email :' },
@@ -75,21 +53,80 @@ export class SettingsComponent {
     { key: 'energyValue', label: 'Energy Value :' },
   ];
 
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.profileForm = this.fb.group({
+      firstName: ['John', Validators.required],
+      lastName: ['Doe', Validators.required],
+      email: ['john.doe@email.com', [Validators.required, Validators.email]],
+      designation: ['Manager', Validators.required],
+      contact: [
+        '9876543210',
+        [Validators.required, Validators.pattern('^[0-9]{10}$')],
+      ],
+      plant: ['Plant 1', Validators.required],
+      password: [
+        'johndoe@123',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(
+            '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).{8,}$'
+          ),
+        ],
+      ],
+    });
+
+    this.companyForm = this.fb.group({
+      email: ['company@email.com', [Validators.required, Validators.email]],
+      name: ['Company Pvt. Ltd.', Validators.required],
+      location: ['Mumbai, India', Validators.required],
+      consumer: ['LT', Validators.required],
+      sanctionedLoad: ['120', Validators.required],
+      contractDemand: ['100', Validators.required],
+      connectedLoad: ['90', Validators.required],
+      tariff: ['Industrial', Validators.required],
+      contractPercentage: ['80%'],
+      bill: ['₹50,000'],
+      energyDetail: ['Solar', Validators.required],
+      energyValue: ['250 KW'],
+    });
+  }
+
   onEdit(field: string) {
     this.editingField = field;
   }
+
   getMaskedPassword(password: string): string {
-    return '●'.repeat(password.length);
+    return '●'.repeat(password?.length || 0);
   }
+
   onSave(field: string) {
-    console.log(
-      `${field} updated:`,
-      this.profile[field] || this.company[field]
-    );
+    if (this.profileForm.get(field)?.invalid || this.companyForm.get(field)?.invalid) {
+      this.profileForm.get(field)?.markAsTouched();
+      this.companyForm.get(field)?.markAsTouched();
+      return;
+    }
+    console.log(`${field} updated:`, this.profileForm.value[field] || this.companyForm.value[field]);
     this.editingField = null;
   }
+
   onSaveProfile() {
-    console.log('Profile updated:', this.profile);
-    this.editingField = null;
+    if (this.profileForm.valid && this.companyForm.valid) {
+      console.log('Profile updated:', this.profileForm.value, this.companyForm.value);
+      this.editingField = null;
+    } else {
+      this.profileForm.markAllAsTouched();
+      this.companyForm.markAllAsTouched();
+    }
+  }
+
+  // convenient getters (like in register.component)
+  get f() {
+    return this.profileForm.controls;
+  }
+  get c() {
+    return this.companyForm.controls;
   }
 }

@@ -1,1 +1,94 @@
-<p>report works!</p>
+<div>
+  <!-- Filter Card -->
+  <div class="m-4 bg-[#f9f9f9] rounded p-4 shadow-md w-fit">
+    <div class="">
+      <h3 class="text-xl">Download Reports</h3>
+      <div
+        class="flex justify-center w-fit items-center m-2 border-2 border-[var(--primary-color)] rounded bg-[var(--primary-color)] text-[var(--secondary-light)]"
+      >
+        <button
+          class="px-4 py-2.5 border-r border-[var(--secondary-light)] hover:bg-[var(--primary-dark)]"
+        >
+          CSV
+        </button>
+        <button
+          class="px-4 py-2.5 border-r border-[var(--secondary-light)] hover:bg-[var(--primary-dark)]"
+        >
+          PDF
+        </button>
+        <button class="px-4 py-2.5 hover:bg-[var(--primary-dark)]">
+          EXCEL
+        </button>
+      </div>
+    </div>
+    <div class="max-w-md mx-auto my-4">
+      <h2 class="text-xl mb-4">Apply Filter</h2>
+
+      <!-- Device -->
+      <div class="mb-4">
+        <label class="block text-sm text-gray-600 mb-1">Select Device*</label>
+        <select
+          class="w-full border rounded-md px-3 py-2 bg-white focus:ring-2 focus:ring-[var(--primary-color)] focus:outline-none"
+        >
+          <option>SL02202406-3</option>
+          <option>SL02202406-4</option>
+        </select>
+      </div>
+
+      <div class="mb-4 flex justify-around">
+        <div class="flex items-center gap-1">
+          <input type="radio" name="dataformat" id="" class="" />
+          <label for="">Paramterized</label>
+        </div>
+        <div class="flex items-center gap-1">
+          <input type="radio" name="dataformat" id="" />
+          <label for="">Formatted</label>
+        </div>
+      </div>
+      <!-- Parameters -->
+      <div class="mb-4">
+        <label class="block text-sm text-gray-600 mb-1">Parameters*</label>
+        <select
+          class="w-full border rounded-md px-3 py-2 bg-white focus:ring-2 focus:ring-[var(--primary-color)] focus:outline-none"
+        >
+          <option>Voltage N, Current, PF, KW, KVAR, KVA</option>
+          <option>Voltage R, S, T</option>
+        </select>
+      </div>
+
+      <!-- Start Date -->
+      <div class="mb-4">
+        <label class="block text-sm text-gray-600 mb-1">Start Date*</label>
+        <div class="flex items-center border rounded-md px-3 py-2">
+          <input
+            type="date"
+            value="2025-08-29"
+            class="w-full outline-none bg-white"
+          />
+        </div>
+      </div>
+
+      <!-- End Date -->
+      <div class="mb-6">
+        <label class="block text-sm text-gray-600 mb-1">End Date*</label>
+        <div class="flex items-center border rounded-md px-3 py-2">
+          <input
+            type="date"
+            value="2025-08-30"
+            class="w-full outline-none bg-white"
+          />
+        </div>
+      </div>
+
+      <!-- Button -->
+      <button
+        class="bg-[var(--primary-color)] text-white px-6 py-2 rounded-md shadow hover:bg-[var(--primary-dark)] focus:ring-2 focus:ring-[var(--primary-color)]"
+      >
+        Filter
+      </button>
+    </div>
+  </div>
+
+  <!-- Data Table -->
+  <div></div>
+</div>

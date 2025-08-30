@@ -1,32 +1,38 @@
-p-tabs{
-    background-color: white !important;
-    border-radius: 8px !important;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
-    padding: 16px !important;
+p-tabs {
+  background-color: white !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+  padding: 16px !important;
 }
-::ng-deep .p-tabpanels{
-    background-color: white !important;
-    color: var(--secondary-color) !important;
+::ng-deep .p-tab {
+  border: 0 !important;
 }
 ::ng-deep .p-tablist-tab-list {
-    background-color: white !important;
-    justify-content: space-between !important;
+  border-bottom: 0 !important;
 }
-::ng-deep .p-tab{
-    color: var(--primary-color) !important;
-    font-weight: bold !important;
-    width: 50%;
+::ng-deep .p-tabpanels {
+  background-color: white !important;
+  color: var(--secondary-color) !important;
 }
-::ng-deep .p-tab-active{
-    /* background-color: #f9f9f9 !important; */
-    /* background-color: white !important; */
-    /* border-radius: 6px 6px 0px 0px;
+::ng-deep .p-tablist-tab-list {
+  background-color: white !important;
+  justify-content: space-between !important;
+}
+::ng-deep .p-tab {
+  color: var(--primary-color) !important;
+  font-weight: bold !important;
+  width: 50%;
+}
+::ng-deep .p-tab-active {
+  /* background-color: #f9f9f9 !important; */
+  /* background-color: white !important; */
+  /* border-radius: 6px 6px 0px 0px;
     box-shadow: grey 0px -1px 5px -2px !important; */
-    border-bottom: 3px solid var(--primary-color) !important;
+  border-bottom: 3px solid var(--primary-color) !important;
 }
-::ng-deep .p-tablist-active-bar{
-    display: none !important;
-    /* background: var(--background-color) !important; */
+::ng-deep .p-tablist-active-bar {
+  display: none !important;
+  /* background: var(--background-color) !important; */
 }
 .profile-container {
   display: grid;
@@ -45,7 +51,7 @@ p-tabs{
   padding: 12px 16px;
   border-radius: 8px;
   justify-content: space-between;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .profile-header h5 {
@@ -69,7 +75,7 @@ p-tabs{
   cursor: pointer;
   font-size: 16px;
 }
-.profile-header input{
+.profile-header input {
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 6px 8px;
@@ -83,13 +89,13 @@ p-tabs{
   border-color: var(--primary-color);
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
-.save-btn{
+.save-btn {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 12px;
 }
-.save-btn button{
+.save-btn button {
   background-color: var(--primary-color);
   color: white;
   border: none;
@@ -97,4 +103,17 @@ p-tabs{
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
+}
+.error-box{
+  background-color: #ffe6e6;
+  color: #cc0000;
+  border: 1px solid #ffcccc;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  position: absolute;
+  width: 300px;
+  z-index: 10;
+  bottom: 10px;
+  margin: auto;
 }
