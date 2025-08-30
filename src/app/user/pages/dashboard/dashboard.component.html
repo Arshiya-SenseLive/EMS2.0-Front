@@ -1,4 +1,4 @@
-<div class=" container-fluid">
+<div class="container-fluid">
   <!-- Header -->
   <div class="row align-items-center mb-4 dashboard-header">
     <!-- Left: Greeting -->
@@ -23,86 +23,139 @@
     </div>
   </div>
 
-
-
   <!-- FILTER TOGGLE + CURRENT BADGES -->
   <div class="row align-items-center mb-2">
-  <!-- Left: Toggle -->
-  <div class="col-auto">
-    <button class="btn btn-toggle"
-            (click)="toggleFilters()"
-            [attr.aria-expanded]="showFilters"
-            [attr.aria-controls]="'filterPanel'">
-              <mat-icon class="me-1">filter_list</mat-icon>
+    <div class="col-auto">
+      <button
+        class="btn btn-toggle"
+        (click)="toggleFilters()"
+        [attr.aria-expanded]="showFilters"
+        [attr.aria-controls]="'filterPanel'"
+      >
+        <mat-icon class="me-1">filter_list</mat-icon>
 
-      <span>{{ showFilters ? 'Hide Filters' : 'Show Filters' }}</span>
-      <mat-icon class="chev ms-1"  [class.rotate]="showFilters">expand_more</mat-icon>
-    </button>
-  </div>
+        <span>{{ showFilters ? "Hide Filters" : "Show Filters" }}</span>
+        <mat-icon class="chev ms-1" [class.rotate]="showFilters"
+          >expand_more</mat-icon
+        >
+      </button>
+    </div>
 
-  <!-- Right: Current badges -->
-  <div class="col d-flex justify-content-end">
-    <div *ngIf="!showFilters" class="current-badges d-flex align-items-center flex-wrap">
-      <span class="label me-2">Current:</span>
+    <!-- Right: Current badges -->
+    <div class="col d-flex justify-content-end">
+      <div
+        *ngIf="!showFilters"
+        class="current-badges d-flex align-items-center flex-wrap"
+      >
+        <span class="label me-2">Current:</span>
 
-      <span class="badge-pill" *ngIf="filter.type === 'device'">Device</span>
-      <span class="badge-pill" *ngIf="filter.type === 'group'">Group</span>
+        <span class="badge-pill" *ngIf="filter.type === 'device'">Device</span>
+        <span class="badge-pill" *ngIf="filter.type === 'group'">Group</span>
 
-      <span class="badge-pill" *ngIf="filter.type === 'device' && filter.deviceId">
-        {{ getDeviceName(filter.deviceId) }}
-      </span>
-      <span class="badge-pill" *ngIf="filter.type === 'group' && filter.groupId">
-        {{ getGroupName(filter.groupId) }}
-      </span>
+        <span
+          class="badge-pill"
+          *ngIf="filter.type === 'device' && filter.deviceId"
+        >
+          {{ getDeviceName(filter.deviceId) }}
+        </span>
+        <span
+          class="badge-pill"
+          *ngIf="filter.type === 'group' && filter.groupId"
+        >
+          {{ getGroupName(filter.groupId) }}
+        </span>
 
-      <span class="badge-pill">{{ getLabel(dataModeOptions, filter.mode) }}</span>
-      <span class="badge-pill">{{ getLabel(timePeriodOptions, filter.period) }}</span>
+        <span class="badge-pill">{{
+          getLabel(dataModeOptions, filter.mode)
+        }}</span>
+        <span class="badge-pill">{{
+          getLabel(timePeriodOptions, filter.period)
+        }}</span>
+      </div>
     </div>
   </div>
-</div>
-
 
   <!-- COLLAPSIBLE FILTER CARD -->
-  <div id="filterPanel" class="filter-card mb-4 collapsible" [class.open]="showFilters">
+  <div
+    id="filterPanel"
+    class="filter-card mb-4 collapsible"
+    [class.open]="showFilters"
+  >
     <div class="card-body">
       <div class="row align-items-end">
         <!-- Filter Type -->
         <div class="col-12 col-sm-6 col-md-4 col-lg-2">
           <label class="form-label">Filter Type</label>
-          <app-select [(ngModel)]="filter.type" [items]="filterTypeOptions" displayKey="label" valueKey="value"
-            placeholder="Select filter type" (selectionChange)="onFilterTypeChange($event)">
+          <app-select
+            [(ngModel)]="filter.type"
+            [items]="filterTypeOptions"
+            displayKey="label"
+            valueKey="value"
+            placeholder="Select filter type"
+            (selectionChange)="onFilterTypeChange($event)"
+          >
           </app-select>
         </div>
 
         <!-- Device -->
-        <div class="col-12 col-sm-6 col-md-4 col-lg-2" *ngIf="filter.type === 'device'">
+        <div
+          class="col-12 col-sm-6 col-md-4 col-lg-2"
+          *ngIf="filter.type === 'device'"
+        >
           <label class="form-label">Select Device</label>
-          <app-select [(ngModel)]="filter.deviceId" [items]="deviceOptions" displayKey="name" valueKey="id"
-            placeholder="Choose a device" (selectionChange)="onDeviceChange($event)">
+          <app-select
+            [(ngModel)]="filter.deviceId"
+            [items]="deviceOptions"
+            displayKey="name"
+            valueKey="id"
+            placeholder="Choose a device"
+            (selectionChange)="onDeviceChange($event)"
+          >
           </app-select>
         </div>
 
         <!-- Group -->
-        <div class="col-12 col-sm-6 col-md-4 col-lg-2" *ngIf="filter.type === 'group'">
+        <div
+          class="col-12 col-sm-6 col-md-4 col-lg-2"
+          *ngIf="filter.type === 'group'"
+        >
           <label class="form-label">Select Group</label>
-          <app-select [(ngModel)]="filter.groupId" [items]="groupOptions" displayKey="name" valueKey="id"
-            placeholder="Choose a group" (selectionChange)="onGroupChange($event)">
+          <app-select
+            [(ngModel)]="filter.groupId"
+            [items]="groupOptions"
+            displayKey="name"
+            valueKey="id"
+            placeholder="Choose a group"
+            (selectionChange)="onGroupChange($event)"
+          >
           </app-select>
         </div>
 
         <!-- Data Mode -->
         <div class="col-12 col-sm-6 col-md-4 col-lg-2">
           <label class="form-label">Data Mode</label>
-          <app-select [(ngModel)]="filter.mode" [items]="dataModeOptions" displayKey="label" valueKey="value"
-            placeholder="Select mode" (selectionChange)="onModeChange($event)">
+          <app-select
+            [(ngModel)]="filter.mode"
+            [items]="dataModeOptions"
+            displayKey="label"
+            valueKey="value"
+            placeholder="Select mode"
+            (selectionChange)="onModeChange($event)"
+          >
           </app-select>
         </div>
 
         <!-- Time Period -->
         <div class="col-12 col-sm-6 col-md-4 col-lg-2">
           <label class="form-label">Time Period</label>
-          <app-select [(ngModel)]="filter.period" [items]="timePeriodOptions" displayKey="label" valueKey="value"
-            placeholder="Select period" (selectionChange)="onPeriodChange($event)">
+          <app-select
+            [(ngModel)]="filter.period"
+            [items]="timePeriodOptions"
+            displayKey="label"
+            valueKey="value"
+            placeholder="Select period"
+            (selectionChange)="onPeriodChange($event)"
+          >
           </app-select>
         </div>
 
@@ -116,44 +169,120 @@
     </div>
   </div>
 
-
-
-
-
-
   <!-- Cards -->
-  <div class="row g-3">
+  <div class="row g-3 dashboard-cards">
+    <!-- KVA -->
     <div class="col-12 col-sm-6 col-lg-3">
-      <div class="card text-center p-3">
-        <span class="card-title">KVA</span>
+      <div class="stat-card">
+        <div class="card-header">
+          <mat-icon>bolt</mat-icon>
+          <span>KVA</span>
+          <span class="status normal">normal</span>
+        </div>
         <h3>1,245.6 <small>kVA</small></h3>
         <p>Apparent Power</p>
+        <span [ngClass]="getTrendClass(5.2)" class="trend">
+          <mat-icon>{{ getTrendIcon(5.2) }}</mat-icon>
+          <span class="trend-value">5.2%</span>
+        </span>
       </div>
     </div>
 
+    <!-- KWH -->
     <div class="col-12 col-sm-6 col-lg-3">
-      <div class="card text-center p-3">
-        <span class="card-title">KWH</span>
+      <div class="stat-card">
+        <div class="card-header">
+          <mat-icon>energy_savings_leaf</mat-icon>
+          <span>KWH</span>
+          <span class="status high">high</span>
+        </div>
         <h3>8,932.4 <small>kWh</small></h3>
         <p>Energy Consumption</p>
+
+        <span [ngClass]="getTrendClass(12.8)" class="trend">
+          <mat-icon>{{ getTrendIcon(12.8) }}</mat-icon>
+
+          <span class="trend-value">12.8%</span>
+        </span>
       </div>
     </div>
 
+    <!-- KVAR -->
     <div class="col-12 col-sm-6 col-lg-3">
-      <div class="card text-center p-3">
-        <span class="card-title">KVAR</span>
+      <div class="stat-card">
+        <div class="card-header">
+          <mat-icon>offline_bolt</mat-icon>
+          <span>KVAR</span>
+          <span class="status normal">normal</span>
+        </div>
         <h3>342.1 <small>kVAR</small></h3>
         <p>Reactive Power</p>
+        <span [ngClass]="getTrendClass(-2.1)" class="trend">
+          <mat-icon>{{ getTrendIcon(-2.1) }}</mat-icon>
+          <span class="trend-value">2.1%</span>
+        </span>
       </div>
     </div>
 
+    <!-- PF -->
     <div class="col-12 col-sm-6 col-lg-3">
-      <div class="card text-center p-3">
-        <span class="card-title">PF</span>
+      <div class="stat-card">
+        <div class="card-header">
+          <mat-icon>speed</mat-icon>
+          <span>PF</span>
+          <span class="status optimal">optimal</span>
+        </div>
         <h3>0.92</h3>
         <p>Power Factor</p>
+        <span [ngClass]="getTrendClass(0)" class="trend">
+          <mat-icon>{{ getTrendIcon(0) }}</mat-icon>
+          <span class="trend-value">0.0%</span>
+        </span>
       </div>
     </div>
   </div>
+
+   <!-- Energy & Demand Section -->
+<div class="row mt-4">
+  <!-- Donut Chart -->
+  <div class="col-12 col-lg-6">
+    <div class="chart-card">
+      <h5>Energy Consumption Overview</h5>
+      <p class="text-muted small">
+        Distribution of energy consumption across all live devices for selected period
+      </p>
+
+      <!-- Time Filter -->
+      <div class="time-filter mb-2">
+        <button *ngFor="let t of donutTimeFilters"
+                (click)="updateDonutData(t.value)"
+                [class.active]="selectedDonutFilter === t.value">
+          {{t.label}}
+        </button>
+      </div>
+
+      <highcharts-chart 
+        [Highcharts]="Highcharts" 
+        [options]="donutOptions" 
+        style="width:100%; height:300px; display:block">
+      </highcharts-chart>
+    </div>
+  </div>
+
+  <!-- Line Chart -->
+  <div class="col-12 col-lg-6">
+    <div class="chart-card">
+      <h5>Max vs Actual Demand</h5>
+      <p class="text-muted small">
+        Comparison of peak demand against actual usage over time (real-time)
+      </p>
+      <highcharts-chart 
+        [Highcharts]="Highcharts" 
+        [options]="lineOptions" 
+        style="width:100%; height:300px; display:block">
+      </highcharts-chart>
+    </div>
+  </div>
+</div>
 
 </div>

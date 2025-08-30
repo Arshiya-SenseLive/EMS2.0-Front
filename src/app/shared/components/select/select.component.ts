@@ -17,15 +17,15 @@ import {
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
-  styleUrl: './select.component.css',
+  styleUrls: ['./select.component.css'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => SelectComponent),
     multi: true
   }]
 })
-export class SelectComponent {
-   @Input() items: any[] = [];
+export class SelectComponent implements ControlValueAccessor, OnChanges {
+  @Input() items: any[] = [];
   @Input() displayKey: string = 'name';
   @Input() valueKey: string = 'id';
   @Input() placeholder: string = 'Select';
