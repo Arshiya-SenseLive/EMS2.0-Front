@@ -8,7 +8,7 @@ interface Profile {
   contact: string;
   plant: string;
   password: string;
-  [key: string]: any;   
+  [key: string]: any;
 }
 
 interface Company {
@@ -24,7 +24,7 @@ interface Company {
   bill: string;
   energyDetail: string;
   energyValue: string;
-  [key: string]: any;   
+  [key: string]: any;
 }
 
 @Component({
@@ -42,7 +42,7 @@ export class SettingsComponent {
     designation: 'Manager',
     contact: '9876543210',
     plant: 'Plant 1',
-    password: ''
+    password: 'johndoe@123',
   };
 
   company: Company = {
@@ -57,7 +57,7 @@ export class SettingsComponent {
     contractPercentage: '80%',
     bill: '₹50,000',
     energyDetail: 'Solar',
-    energyValue: '250 KW'
+    energyValue: '250 KW',
   };
 
   companyFields = [
@@ -72,18 +72,23 @@ export class SettingsComponent {
     { key: 'contractPercentage', label: '% of Contract Demand :' },
     { key: 'bill', label: 'Electricity Bill :' },
     { key: 'energyDetail', label: 'Energy Detail (Solar/Digi) :' },
-    { key: 'energyValue', label: 'Energy Value :' }
+    { key: 'energyValue', label: 'Energy Value :' },
   ];
 
   onEdit(field: string) {
     this.editingField = field;
   }
-
+  getMaskedPassword(password: string): string {
+    return '●'.repeat(password.length);
+  }
   onSave(field: string) {
-    console.log(`${field} updated:`, this.profile[field] || this.company[field]);
+    console.log(
+      `${field} updated:`,
+      this.profile[field] || this.company[field]
+    );
     this.editingField = null;
   }
-  onSaveProfile(){
+  onSaveProfile() {
     console.log('Profile updated:', this.profile);
     this.editingField = null;
   }

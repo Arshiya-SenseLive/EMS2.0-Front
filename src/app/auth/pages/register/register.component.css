@@ -82,8 +82,7 @@ color: var(--secondary-light);
   opacity: 0.85;
   color: var(--secondary-color);
 }
-.form-group input,
-.form-group select {
+.form-group input {
   width: 100%;
   height: 44px; /* consistent height */
   padding: 0 14px; /* even padding on sides */
@@ -98,6 +97,30 @@ color: var(--secondary-light);
   transition: background 0.25s ease, border-color 0.25s ease,
     box-shadow 0.25s ease;
   box-sizing: border-box; /* avoids overflow issues */
+}
+
+.form-group select {
+  width: 100%;
+  height: 44px; /* consistent height */
+  padding: 0 14px; /* even padding on sides */
+
+  border: 1px solid rgb(47, 46, 46);
+  border-radius: 6px; /* match button’s curve */
+
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffffff;
+  font-size: 0.95rem; /* slightly smaller */
+
+  transition: background 0.25s ease, border-color 0.25s ease,
+    box-shadow 0.25s ease;
+  box-sizing: border-box; /* avoids overflow issues */
+}
+.form-group select option{
+  background: var(--background-color);
+  color: var(--secondary-color);
+}
+.form-group select::placeholder{
+  color:#ffffff
 }
 .form-group input::placeholder {
   color: #ffffff;
@@ -188,4 +211,29 @@ button:disabled {
 }
 .error-box small{
   width: max-content;
+}
+.consumer-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.consumer-group .label {
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  opacity: 0.85;
+  color: var(--secondary-color);
+}
+
+.consumer-group .options {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.consumer-group input[type="radio"] {
+  accent-color: var(--primary-color); /* yellow like your screenshot */
+  cursor: pointer;
 }
